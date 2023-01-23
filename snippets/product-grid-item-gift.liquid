@@ -1,0 +1,263 @@
+{%- comment -%}
+  Renders list of products in grid layout
+
+  Accepts:
+  - product: {Object} product (required)
+  - grid_block_size: {String} outputs grid classes on desktop
+  - grid_block_size_mobile: {String} outputs grid classes on mobile
+  - index: {Number} Index of the item in products loop
+
+  Usage:
+  {% render 'product-grid-item', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index %}
+{%- endcomment -%}
+
+{%- liquid
+  assign file_extension = 'png'
+  assign show_reviews = settings.show_reviews
+  assign show_review_stars = settings.show_review_stars
+  assign price_swatches_hover = settings.price_swatches_hover
+  assign show_sale_badge = false
+  unless settings.product_badge_style == 'none'
+    assign show_sale_badge = true
+  endunless
+-%}
+
+{%-	unless fallback -%}
+  {%- liquid
+    assign first_variant = product.selected_or_first_available_variant
+
+    assign on_sale = false
+    if product.compare_at_price > product.price
+      assign on_sale = true
+      assign on_sale_class = ' is-sale'
+    endif
+
+    assign sold_out = true
+    if product.available
+      assign sold_out = false
+    endif
+
+    unless show_sale_badge
+      assign on_sale = false
+    endunless
+
+    comment
+      Product tags
+    endcomment
+     
+    assign product_tags = product.tags | join: ',' | append: ','
+    assign preorder = false
+    assign badge = ''
+
+
+
+     
+
+assign show_sale_badge = true  
+assign badge ='Sale'
+
+
+
+     
+    if product_tags contains '_badge_'
+      assign replace_symbol = ' '
+
+      if settings.product_badge_style == 'circle'
+        assign replace_symbol = '<br>'
+      endif
+
+      assign badge = product_tags | split: '_badge_'
+      assign badge = badge[1] | split: ',' | first | replace: '_', replace_symbol
+    endif
+
+    if product_tags contains '_preorder'
+      assign preorder = true
+    endif
+  -%}
+
+  {%- capture product_badge -%}
+    {%- if product.object_type == 'product' -%}
+      {%- if badge != '' and show_sale_badge -%}
+        <span class="product-status-flag product-status-flag--custom product-status-flag--{{ settings.product_badge_style }}" data-badge>
+          {{- badge -}}
+        </span>
+      {%- elsif preorder and show_sale_badge and sold_out == false -%}
+        <span class="product-status-flag product-status-flag--custom product-status-flag--{{ settings.product_badge_style }}" data-badge>
+          {{- 'products.form.preorder' | t -}}
+        </span>
+      {%- elsif on_sale or sold_out -%}
+        <span class="product-status-flag product-status-flag--{{ settings.product_badge_style }}{% if sold_out %} is-sold-out{% endif %}{{ on_sale_class }}" data-badge>
+          {%- if settings.product_badge_style == 'rectangle' -%}
+            {%- if sold_out -%}
+              {{- 'products.labels.sold_out' | t -}}
+            {%- elsif on_sale -%}
+              {{- 'products.labels.on_sale' | t -}}
+            {%- endif -%}
+          {%- else -%}
+            {%- if sold_out -%}
+              {{- 'products.labels.sold_out' | t | replace: ' ', '<br>' -}}
+            {%- elsif on_sale -%}
+              {{- 'products.labels.on_sale' | t | replace: ' ', '<br>' -}}
+            {%- endif -%}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- capture product_image_link -%}
+    <a href="{{ product.url | within: collection }}" class="product-block__image__link" aria-label="{{ product.title | strip_html }}" title="{{ product.title | strip_html }}" data-product-link>
+      {%- if product.media[1].preview_image != blank and settings.hover_image -%}
+        <div class="product-block__image-hover">
+          <span class="product-block__image-hover__image lazyload" data-bgset="{% render 'bgset', image: product.media[1].preview_image %}" data-sizes="auto"></span>
+        </div>
+      {%- endif -%}
+
+      {{- product_badge -}}
+    </a>
+  {%- endcapture -%}
+
+  {%- capture quick_view_link -%}
+    {%- if product.object_type == 'product' and settings.show_quick_view -%}
+      <div class="product-block__image-inner">
+        <a href="{{ product.url | within: collection }}" class="quickView-button button" data-trigger-quickview="{{ product.handle }}" data-focus-element>{{ 'collections.grid.quick_view' | t }}</a>
+      </div>
+    {%- endif -%}
+  {%- endcapture -%}
+
+  <div class="product-block block {{ grid_block_size }} {{ grid_block_size_mobile }} gift" data-product-block>
+    <div class="product-block__inner"{% if settings.transition_grid_items %} data-aos="zoom-in-up"{% endif %}>
+      {%- if product.media.size > 0 -%}
+        <div
+          class="product-block__image lazyload{% if product.media[1].preview_image != blank and settings.hover_image %} has-second-image{% endif %}"
+          title="{% if product.object_type == 'product' %}{{ product.featured_media.alt | escape }}{% elsif product.object_type == 'article' %}{{ product.title | strip_html }}{% endif %}"
+          data-bgset="{% render 'bgset', image: product.featured_media.preview_image %}"
+          data-sizes="auto"
+          data-parent-fit="cover"
+          data-aspectratio="{{ product.featured_media.preview_image.aspect_ratio }}"
+          data-product-image>
+          {{- product_image_link -}}
+          {{- quick_view_link -}}
+        </div>
+
+        <noscript>
+          <div
+            class="product-block__image"
+            title="{% if product.object_type == 'product' %}{{ product.featured_media.alt | escape }}{% elsif product.object_type == 'article' %}{{ product.title | strip_html}}{% endif%}"
+            style="background-image:url('{{ product.featured_media.preview_image | img_url: '1024x' }}');">
+            {{- product_image_link -}}
+          </div>
+        </noscript>
+      {%- else -%}
+        <div class="product-block__image" data-product-image data-aspectratio="1">
+          {%- comment -%} Show "No image" if product has no media {%- endcomment -%}
+          {%- assign image_url_pattern = product.featured_image | img_url: '1080x' | replace: '_1080x.', '_{width}x.' -%}
+          {%- assign image_widths = "[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048, 2450, 2700, 3000, 3350, 3750, 4100]" -%}
+          <img
+            class="product-image product-image--empty lazyload"
+            src="{{ 'blank.gif' | asset_img_url: '1x1' }}"
+            data-src="{{ image_url_pattern }}"
+            data-widths= "{{ image_widths }}"
+            data-aspectratio="1"
+            data-sizes="auto"
+            width="1080"
+            height="1080"
+            alt="{{ product.title | strip_html | escape }}">
+            <noscript>
+              <img
+                class="product-image product-image--empty"
+                src="{{ product.featured_image | img_url: '1080x' }}"
+                width="1080"
+                height="1080"
+                alt="{{ product.title | strip_html | escape }}">
+            </noscript>
+
+            {{- product_image_link -}}
+            {{- quick_view_link -}}
+        </div>
+      {%- endif -%}
+
+      <div class="product-block__info product-block__info--{{ settings.product_title_position }} gift">
+        <div class="product-block__top">
+          <h3 class="product-block__title" style="color:#fff"><a href="{{ product.url | within: collection }}">{{ product.title | strip_html }}</a></h3>
+
+          {%- if settings.show_review_stars -%}
+            <div class="product-block__badge">
+              {%- render 'rating', reviews: product.metafields.reviews, show_rating_count: settings.show_rating_count -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+
+
+        {%- if product.variants.size > 1 and settings.enable_color_swatches -%}
+          {%- capture swatch_translation -%}{{ 'general.swatches.color' | t }}{%- endcapture -%}
+
+          {%- assign swatch_labels = swatch_translation | append: ',' | split: ',' -%}
+          {%- for label in swatch_labels -%}
+            {%- assign sanitized_label = label | lstrip | rstrip -%}
+            {%- if product.options_by_name[sanitized_label].values.size > 0 -%}
+              <div class="product-block__swatch swatch--{{ settings.color_swatches_style }}{% if price_swatches_hover %} product-block__swatch--hover{% endif %}" data-grid-swatches data-swatch-handle="{{ product.handle }}" data-swatch-label="{{ label }}"></div>
+
+              {%- break -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- else -%}
+  <div class="product-block block {{ grid_block_size }} {{ grid_block_size_mobile }}" data-product-block>
+    <div class="product-block__inner"{% if settings.transition_grid_items %} data-aos="zoom-in-up"{% endif %}>
+      <div class="product-block__image svg-placeholder" data-product-image>
+        {%- capture current -%}{% cycle 1, 2, 3, 4, 5, 6 %}{%- endcapture -%}
+        {{ 'product-' | append: current | placeholder_svg_tag }}
+
+        {%- if settings.hover_image -%}
+          {% capture current_next %}{% cycle 5, 6, 1, 2, 3, 4 %}{% endcapture %}
+          <span class="product-block__image-hover product-block__image-hover--placeholder svg-placeholder">{{ 'product-' | append: current_next | placeholder_svg_tag }}</span>
+        {%- endif -%}
+
+        {%- if settings.show_quick_view -%}
+          <div class="product-block__image-inner">
+            <div class="quickView-button button">{{ 'collections.grid.quick_view' | t }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="product-block__info product-block__info--{{ settings.product_title_position }}">
+
+        <div class="product-block__top">
+          <h3 class="product-block__title">{{ 'onboarding.product_title' | t }}</h3>
+
+          {%- if settings.show_review_stars -%}
+            <div class="product-block__badge">
+              {%- render 'rating', show_rating_count: settings.show_rating_count, onboarding: true -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="product-block__price">
+          <p class="price{% if price_swatches_hover %} price--hover{% endif %}"><span class="money">{{ '9900' | money}}</span></p>
+        </div>
+
+        {%- if settings.enable_color_swatches -%}
+          {%- assign white = 'onboarding.colors.white' | t -%}
+          {%- assign grey = 'onboarding.colors.grey' | t -%}
+          {%- assign black = 'onboarding.colors.black' | t -%}
+
+          <div class="product-block__swatch product-block__swatch--{{ settings.color_swatches_style }}{% if price_swatches_hover %} product-block__swatch--hover{% endif %}">
+            {%- for i in (1..3) -%}
+              {%- capture value -%}{%- cycle white, grey, black -%}{%- endcapture -%}
+              <div data-value="{{ value | escape }}" class="swatch__element">
+                <div class="swatch__label">
+                  <span class="swatch__color swatch__color--{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ value | handle | append: '.' | append: file_extension | asset_url }})"></span>
+                </div>
+                <a href="#" class="swatch__link">{{ value }}</a>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endunless -%}

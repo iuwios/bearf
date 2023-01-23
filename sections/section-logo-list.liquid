@@ -1,0 +1,266 @@
+{%- comment -%} Logos List {%- endcomment -%}
+{%- assign heading_position = section.settings.title_position -%}
+{%- assign title = section.settings.title -%}
+
+<div data-section-id="{{ section.id }}" data-section-type="logo-list">
+  <div class="logo-list"{% if section.settings.color_logos_bg != blank %} style="background-color: {{ section.settings.color_logos_bg }};"{% endif %}>
+    <div class="container">
+      <div class="page-title page-title--{{ heading_position }}">
+        <h2 style="font-weight:700;letter-spacing:1.6px">{{ title }}</h2>
+      </div>	
+    </div>
+    <div class="logo-list__slider" data-logo-list-slider>
+      {%- for block in section.blocks -%}
+        {%- liquid
+
+          assign image = block.settings.logo_image
+          assign image_widths = '[100,120,140,160,180,200,240,280,320,360]'
+          assign image_url_pattern = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+          assign logo_url = block.settings.logo_url
+          assign logo_title = block.settings.logo_title
+          assign logo_button = block.settings.logo_button
+          assign logo_width = block.settings.logo_width
+          assign buttonLogoStyle = section.settings.logo_style
+          
+          unless buttonLogoStyle == 'Round'
+            assign logo_aspect_ratio = 1
+            assign padding_top = 100
+          else
+            assign logo_aspect_ratio = image.aspect_ratio | default: 1.333
+            assign padding_top = 1 | divided_by: logo_aspect_ratio | times: 100 | round: 2
+          endunless
+        -%}
+
+      
+      
+        <div class="logo-list__slide" 
+          data-logo-list-slide="{{- block.id -}}" 
+          data-slide-index="{{ forloop.index0 }}" 
+          {{ block.shopify_attributes }}>
+{%- if buttonLogoStyle == 'round' -%}
+          <div class="logo-list__item collection-image-wrap collection-image--circle" >
+{%- else -%}
+          <div class="logo-list__item" style="width: {{ logo_width }}px">
+{%- endif -%}
+
+           
+            <div class="logo-list__item-container" style="padding-top: {{ padding_top }}%">
+              {%- if image != blank -%}
+                {%- capture logo_image -%}
+                  <img
+                    class="logo-list__item-image lazyload"
+                    src="{{ 'blank.gif' | asset_img_url: '1x1' }}"
+                    data-src="{{ image_url_pattern }}"
+                    data-widths= "{{ image_widths }}"
+                    data-aspectratio="{{ image.aspect_ratio }}"
+                    data-sizes="auto"
+                    loading="lazy"
+                    alt="{{ image.alt | escape }}">
+                  <noscript>
+                    <img src="{{ image | img_url: '380x' }}" alt="{{ image.alt | escape }}">
+                  </noscript>
+                {%- endcapture -%}
+
+                {%- if logo_url != blank -%}
+                  <a href="{{ logo_url }}" class="logo-list__item-link" title="{{ image.alt | escape }}">
+                    {{- logo_image -}}
+                  </a>
+                {%- else -%}
+                  {{- logo_image -}}
+                {%- endif -%}
+              {%- else -%}
+                {%- if logo_url != blank -%}
+                  <a href="{{ logo_url }}" class="logo-list__item-link">
+                    {{- 'logo' | placeholder_svg_tag -}}
+                  </a>
+                {%- else -%}
+                  <div class="logo-list__item-image svg-placeholder">
+                    {{- 'logo' | placeholder_svg_tag -}}
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+              <a href="{{ logo_url }}" class="home-collection-list-item-content" title="{{ image.alt | escape }}">
+                <h3 style="color:white">{{ logo_title }}</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+
+<style>
+    .home-collection-list-item-content {
+      text-shadow: 0 0 10px rgb(0 0 0 / 20%);
+      position: absolute;
+      top: 50%;
+      right: 15%;
+      text-align: center;
+      transform: translateY(-50%);
+    }
+    @media (min-width: 1021px) {
+      .home-collection-list-item-content {
+        left: calc(var(--gutter-large) * 1);
+      }
+    }
+    @media (max-width: 1020px) {
+      .home-collection-list-item-content {
+        left: calc(var(--gutter-large) * 1);
+      }
+    }
+    @media (max-width: 720px) {
+      .home-collection-list-item-content {
+        left: calc(var(--gutter-medium) * 1);
+      }
+    }
+    @media (max-width: 540px) {
+      .home-collection-list-item-content {
+        left: calc(var(--gutter-small) * 1);
+      }
+    }
+    @media (max-width: 360px) {
+      .home-collection-list-item-content {
+        left: calc(var(--gutter-xs) * 1);
+      }
+    }
+    .text-shadows-true.text-color-light .home-collection-list-item-content {
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .home-collection-list-item-content h3 {
+      margin: 0;
+      color: inherit;
+      font-size: 20px;
+    }
+  
+   .text-shadows-true.text-color-light .home-collection-list-item-content {
+    text-shadow: 0 0 10px rgb(0 0 0 / 20%);
+   }
+  
+  
+     span.collection-item__title {
+      position: absolute;
+      display: block;
+      margin-top: -50%;
+      font-weight: 700;
+      padding: 0px 32%;
+      color: white;
+      font-size: 22px;
+   }
+    .collection-image--circle {
+        border-radius: 49% 40% 56% 41%;
+        overflow: hidden;
+    }
+
+    .collection-image-wrap {
+      position: relative;
+      transition: all .2s ease;
+     }
+</style>
+
+{% schema %}
+{
+  "name": "Logo list",
+  "class": "shopify-section--logo-list",
+  "max_blocks": 25,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "select",
+      "id": "title_position",
+      "label": "Heading position",
+      "default": "left",
+      "options": [
+      { "label": "Left", "value": "left" },
+      { "label": "Center", "value": "center" }
+      ]
+    },  
+    {
+      "type": "color",
+      "id": "color_logos_bg",
+      "label": "Background color"
+    },
+    {
+      "type": "select",
+      "id": "logo_style",
+      "label": "Button style",
+      "default": "round",
+      "options": [
+        { "label": "Round", "value": "round" },
+        { "label": "Rectangle", "value": "rectangle" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logos width",
+          "min": 100,
+          "max": 210,
+          "step": 10,
+          "unit": "px",
+          "default": 120
+        },
+        {
+          "type" : "text",
+          "id" : "logo_title",
+          "label" : "Title",
+          "default" : "Title"
+        },
+        {
+          "type" : "text",
+          "id" : "logo_button",
+          "label" : "Button",
+          "default" : "Shop Now"
+        },  
+        {
+          "type": "url",
+          "id": "logo_url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo list",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        },
+        {
+          "type": "item_logo"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

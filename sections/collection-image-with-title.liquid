@@ -1,0 +1,137 @@
+{%- assign show_banner = section.settings.show_banner -%}
+
+{%- assign banner_image = collection.image -%}
+{%- if collection.handle == 'all' %}
+  {%- assign banner_image = section.settings.banner_image -%}
+{%- endif %}
+
+{%- if show_banner and banner_image -%}
+  {%- render 'banner',
+      image: banner_image,
+      height: section.settings.banner_height,
+      transparent_header: true,
+      heading: collection.title,
+      text: collection.description,
+      text_position: section.settings.banner_text_position,
+      image_position: section.settings.image_position,
+      color_text: section.settings.banner_color_text,
+      color_overlay: section.settings.banner_color_overlay,
+      overlay_opacity: section.settings.banner_overlay_opacity,
+      unique: section.id
+  -%}
+{%- else -%}
+  <div class="page-title" data-banner-content>
+    <div class="container">
+      <h1 class="page-title__heading">{{ page_title }}</h1>
+
+      {%- unless collection.description == blank -%}
+        <div class="page-title__text">{{ collection.description }}</div>
+      {%- endunless -%}
+    </div>
+  </div>
+{%- endif -%}
+
+
+{% schema %}
+  {
+  "name": "Image with title",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Catalog image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_banner",
+      "label": "Show collection image as a banner",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Default image",
+      "info": "Will be shown on collections/all"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center-center",
+      "options": [
+        { "label": "Top", "value": "top-center" },
+        { "label": "Right", "value": "right-center" },
+        { "label": "Center", "value": "center-center" },
+        { "label": "Left", "value": "left-center" },
+        { "label": "Bottom", "value": "bottom-center" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "banner_height",
+      "label": "Height",
+      "options": [
+        {
+          "value": "one-hundred",
+          "label": "Full screen height"
+        },
+        {
+          "value": "original-height",
+          "label": "Image height"
+        },
+        {
+          "value": "big",
+          "label": "750px"
+        },
+        {
+          "value": "normal",
+          "label": "650px"
+        },
+        {
+          "value": "small",
+          "label": "550px"
+        }
+      ],
+      "default": "small"
+    },
+    {
+      "type": "select",
+      "id": "banner_text_position",
+      "label": "Text position",
+      "default": "center",
+      "options": [
+        { "label": "Left", "value": "left" },
+        { "label": "Center", "value": "center" },
+        { "label": "Right", "value": "right" },
+        { "label": "Bottom left", "value": "bottom-left" },
+        { "label": "Bottom right", "value": "bottom-right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "banner_color_text",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "banner_color_overlay",
+      "label": "Overlay",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "banner_overlay_opacity",
+      "label": "Overlay opacity",
+      "step": 5,
+      "max": 95,
+      "min": 0,
+      "unit": "%",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

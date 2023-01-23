@@ -1,0 +1,107 @@
+{%- assign heading = section.settings.title -%}
+{%- assign subheading = section.settings.subheading -%}
+
+<div class="faq-section" data-section-id="{{ section.id }}" data-section-type="faq">
+  <div class="container">
+    {%- unless heading == blank and subheading == blank -%}
+      <div class="page-title">
+        {%- if heading != blank -%}
+          <h2 class="page-title__heading">{{ heading }}</h2>
+        {%- endif -%}
+
+        {%- if subheading != blank -%}
+          <p class="page-title__subheading subheading-text">{{ subheading }}</p>
+        {%- endif -%}
+      </div>
+    {%- endunless -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="faq-list">
+        {%- for block in section.blocks -%}
+          {%- assign question = block.settings.title -%}
+          {%- assign answer = block.settings.answer -%}
+
+          {%- unless question == blank -%}
+            <li class="faq-list__item" {{ block.shopify_attributes }}>
+              <a href="#" class="faq-list__item-question" aria-controls="FAQ-item--{{ forloop.index0 }}-{{ section.id }}" aria-expanded="false" data-collapsible-trigger>
+                {{- question -}}
+                {%- render 'icon-plus' -%}
+                {%- render 'icon-minus' -%}
+              </a>
+
+              {%- unless answer == blank -%}
+              <div class="faq-list__item-answer-wrapper" id="FAQ-item--{{ forloop.index0 }}-{{ section.id }}" aria-hidden="true">
+                <div class="faq-list__item-answer" data-collapsible-content>{{ answer }}</div>
+              </div>
+              {%- endunless -%}
+            </li>
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+
+{% schema %}
+{
+	"name": "FAQ",
+	"class": "shopify-section--faq",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading",
+			"default": "FAQ"
+		},
+		{
+			"type": "text",
+			"id": "subheading",
+			"label": "Subheading",
+			"default": "Questions and Answers"
+		},
+		{
+			"type": "header",
+			"content": "Blocks",
+			"info": "Blocks are required for the FAQ section in order to add questions and answers. You can add them from the drop-down in order to edit or reorder."
+		}
+	],
+	"blocks": [
+		{
+			"name": "Item",
+			"type": "item",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Question",
+					"default": "Question"
+				},
+				{
+					"type": "richtext",
+					"id": "answer",
+					"label": "Answer",
+					"default": "<p>Use this answer block to discuss some commonly asked questions you've discovered from your customers interactions. You could discuss product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection. This section will appear across all products.</p>"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"category": "Text",
+			"name": "FAQ",
+			"blocks": [
+				{
+					"type": "item"
+				},
+				{
+					"type": "item"
+				},
+				{
+					"type": "item"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

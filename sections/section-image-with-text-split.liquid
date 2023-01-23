@@ -1,0 +1,685 @@
+{% comment %} Settings {% endcomment %}
+{%- liquid
+  assign show_nav_arrows = section.settings.show_nav_arrows
+  assign dots_style = settings.dots_style
+  if dots_style == 'hidden' or section.blocks.size < 2
+    assign dots = false
+  else
+    assign dots = true
+  endif
+  assign transition = section.settings.transition
+  assign autoplay = section.settings.autoplay
+  assign duration = section.settings.duration | times:1000
+  unless autoplay
+    assign duration = false
+  endunless
+  assign fade_mode = true
+  if transition == 'slide'
+    assign fade_mode = false
+  endif
+  assign hover = true
+  assign transition_text = settings.transition_text
+  assign animation_delay = 0
+  assign animation_anchor = '#gallery-module--' | append: section.id
+
+  assign image_position = section.settings.slide_image_position | default: 'left'
+  assign image_width = section.settings.slide_image_width | split: '|' | first | default: 'med_s35'
+  assign content_width = section.settings.slide_image_width | split: '|' | last | default: 'med_s25'
+-%}
+
+{% comment %} Check if Image Height setting is selected {% endcomment %}
+{%- liquid
+  assign image_height = false
+  if section.settings.slide_height == 'original-height'
+    assign image_height = true
+  endif
+-%}
+
+{% comment %} Content {% endcomment %}
+{%- liquid
+    assign button_size = section.settings.button_size
+    assign button_primary_style = section.settings.button_primary_style 
+	assign heading = section.settings.title
+	assign subheading = section.settings.subheading
+	assign text = section.settings.text
+	assign cta = section.settings.cta
+	assign link = section.settings.link
+	assign heading2 = section.settings.title2
+	assign subheading2 = section.settings.subheading2
+	assign text2 = section.settings.text2
+	assign cta2 = section.settings.cta2
+	assign link2 = section.settings.link2
+-%}
+
+{%- style -%}
+
+
+  @media not all and (max-width: 768px){
+
+    .gallery-wrap.container-wrap.gift-split {
+        margin-top: -40px;
+    }
+
+    .split-hero__buttons_gift_left.split-hero__buttons_gift--inline.aos-init.aos-animate{      
+        opacity: 0.8;
+        font-weight: 500;
+        min-width: 215px;
+        min-height: 57px;
+        font-family: 'Quicksand';
+        font-size: 20px;
+        line-height: 18.75px;   
+    }
+    
+    .split-hero__buttons_gift_right.split-hero__buttons_gift--inline.aos-init.aos-animate{      
+        opacity: 0.8;
+        font-weight: 500;
+        min-width: 215px;
+        min-height: 57px;
+        font-family: 'Quicksand';
+        font-size: 20px;
+        line-height: 18.75px;   
+    }
+    .row.original-height.gift-split {
+         max-width: 1532px;
+         margin: 0px auto;
+      }
+   }
+  
+  @media all and (max-width: 768px){
+
+   .gallery-slider.block.s1.med_s12.gift-split-left {
+     margin-bottom: 41px;
+   }
+
+    a.button.button--large.button--quaternary {
+      opacity: 0.8;
+      font-weight: 500;
+      min-width: 122px;
+      min-height: 42px;
+      font-family: 'Quicksand';
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 18.75px; 
+      margin-top: 34%;
+    }
+    .split-hero__buttons_gift_right.split-hero__buttons_gift--inline.aos-init.aos-animate
+    {
+      opacity: 0.8;
+      font-weight: 500;
+      min-width: 122px;
+      min-height: 42px;
+      font-family: 'Quicksand';
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 18.75px;  
+    }
+
+    a.slide-content__button.button.button--large.button--tertiary.gift-mobile {
+      opacity: 0.7;
+      min-width: 122px;
+      min-height: 42px;
+      font-family: 'Quicksand';
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 18.75px;  
+      
+   }
+    
+    .gallery-slider.block.s1.med_s12.gift-split-right {
+      margin-top: 40px;
+    }
+
+    .gallery-slider.block.s1.med_s12.gift-split-left{
+      margin-top: 25px;
+      
+    }
+ }
+
+.split-hero__buttons_gift_left {
+  margin: 0 calc(var(--gutter_gift) * -1);
+}
+.split-hero__buttons_gift_right {
+  margin: 0 calc(var(--gutter_gift) * -1);
+}
+  
+@media screen and (max-width: 399px) {
+  .split-hero__buttons_gift_left {
+    margin: 0 calc(var(--gutter_gift) / -2);
+  }
+   .split-hero__buttons_gift_right {
+    margin: 0 calc(var(--gutter_gift) / -2);
+  } 
+}
+.split-hero__buttons_gift_left .button {
+  min-width: 204px;
+  text-align: center;
+  margin: 10px var(--gutter_gift) 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 45%;
+}
+.split-hero__buttons_gift_right .button {
+  min-width: 204px;
+  text-align: center;
+  margin: 46% var(--gutter_gift) 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 9%;
+}  
+@media screen and (max-width: 399px) {
+  .split-hero__buttons_gift_left .button {
+    min-width: 115px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 32% calc(var(--gutter) / 2) 0;
+    width: calc(100% - var(--gutter));
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 5px;
+  }
+
+}
+
+@media screen and (max-width: 399px) {
+  .split-hero__buttons_gift--inline .button {
+    width: calc(30% - var(--gutter));
+  }
+  
+}
+ 
+{%- endstyle -%}
+
+{%- comment -%} Section {%- endcomment -%}
+<section class="gallery-wrap container-wrap gift-split" id="gallery-module--{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="gallery"
+  data-dots-style="{{ dots_style }}">
+  <div class="gallery">
+    <div class="row {{ section.settings.slide_height }} gift-split">
+      {%- capture slider -%}
+      <div class="gallery-slider block s1 {{ image_width }}{% if transition == 'zoom-out' %} gallery-slider--zoom-out gallery-slider--is-loading{% endif %}  gift-split-left " data-gallery-slider>
+          {% assign  block = section.blocks[0] %}
+          {%- assign image = block.settings.slide -%}
+          {%- assign image_aspect_ratio = image.aspect_ratio | default: 1.66 -%}
+          {%- assign image_mobile = block.settings.slide_mobile -%}
+          {%- assign image_mobile_aspect_ratio = image_mobile.aspect_ratio | default: 1.66 -%}
+
+          <div class="slide-image{% unless image %} slide-image--placeholder{% endunless %}"
+            data-slide="{{ block.id }}"
+            data-slide-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}>
+
+            {%- if image -%}
+              <div
+                class="slide-image-bg slide-background lazyload {% if image_mobile != blank %} slide-image--has-mobile{% endif %}"
+                data-bgset="{% render 'bgset', image: image %}"
+                data-sizes="auto"
+                data-parent-fit="cover"
+                data-block="slide"
+                loading="lazy"
+                {% if image_height %}
+                  style="padding-top: {{ 100 | divided_by: image_aspect_ratio | append: '%' }}"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+              </div>
+              <noscript>
+                <div class="slide-image-bg slide-background no-js-slide"
+                style="background-image:url('{{ block.settings.slide | img_url: '1024x' }}');{% if image_height %}padding-top: {{ 100 | divided_by: image_aspect_ratio | append: '%' }};{% endif %}"
+                ></div>
+              </noscript>
+            {%- else -%}
+              <div class="slide-background__inner">
+                <div class="slide-image-bg slide-background--blank"{% if image_height %} style="padding-top: {{ 100 | divided_by: image_aspect_ratio | append: '%' }};"{% endif %}>
+                  {%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%}
+                  {{- 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' -}}
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if image_mobile -%}
+              <div
+                class="slide-image-bg slide-background lazyload slide-image--mobile"
+                data-bgset="{% render 'bgset', image: image_mobile %}"
+                data-sizes="auto"
+                data-parent-fit="cover"
+                data-block="slide"
+                loading="lazy"
+                {% if image_height %}
+                  style="padding-top: {{ 100 | divided_by: image_mobile_aspect_ratio | append: '%' }}"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+              </div>
+              <noscript>
+                <div class="slide-image-bg slide-background no-js-slide"
+                style="background-image:url('{{ block.settings.slide_mobile | img_url: '1024x' }}');{% if image_height %}padding-top: {{ 100 | divided_by: image_mobile_aspect_ratio | append: '%' }};{% endif %}"
+                ></div>
+              </noscript>
+            {%- else -%}
+              <div class="slide-background__inner">
+                <div class="slide-image-bg slide-background--blank"{% if image_height %} style="padding-top: {{ 100 | divided_by: image_mobile_aspect_ratio | append: '%' }};"{% endif %}>
+                  {%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%}
+                  {{- 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' -}}
+                </div>
+              </div>
+            {%- endif -%}
+         </div>
+
+           <div class="split-hero__content split-hero__content--{{ content_alignment }}">
+			<div class="container">
+				<div class="row">
+					<div class="split-hero__text">
+						{%- if subheading != blank -%}
+							<p class="split-hero__subheading subheading-text"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{{- subheading -}}
+							</p>
+							{%- assign animation_delay = animation_delay | plus: 250 -%}
+						{%- endif -%}
+
+						{%- if heading != blank -%}
+							<h2 class="split-hero__heading size--heading-1"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{{- heading -}}
+							</h2>
+							{%- assign animation_delay = animation_delay | plus: 250 -%}
+						{%- endif -%}
+
+						{%- if text != blank -%}
+							<div class="split-hero__richtext"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{{- text -}}
+							</div>
+							{%- assign animation_delay = animation_delay | plus: 250 -%}
+						{%- endif -%}
+
+						{%- if cta != blank  -%}
+							<div class="split-hero__buttons_gift_left{% if cta != blank %} split-hero__buttons_gift--inline{% endif %}"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{%- if cta != blank -%}
+									<a tabindex="0" {% if link2 != blank %}href="{{ link }}"{% endif %} class="button button--{{ button_size }} button--{{ button_primary_style }}" aria-label="{{ cta }}" title="{{ cta }}">{{ cta }}</a>
+								{%- endif -%}
+							</div>
+						{%- endif -%}
+					</div>
+				</div>
+			</div>
+		    </div>
+
+      </div>
+      {%- endcapture -%}
+
+      {%- if image_position == 'left' -%}
+        {{ slider }}
+      {%- endif -%}
+
+
+      <div class="gallery-slider block s1 {{ image_width }}{% if transition == 'zoom-out' %} gallery-slider--zoom-out gallery-slider--is-loading{% endif %}  gift-split-right " data-gallery-slider>
+        <div class="gallery-content-inner">
+         
+          {% assign  block = section.blocks[1] %}
+          {%- assign image = block.settings.slide -%}
+          {%- assign image_aspect_ratio = image.aspect_ratio | default: 1.66 -%}
+          {%- assign image_mobile = block.settings.slide_mobile -%}
+          {%- assign image_mobile_aspect_ratio = image_mobile.aspect_ratio | default: 1.66 -%}
+
+          <div class="slide-image{% unless image %} slide-image--placeholder{% endunless %}"
+            data-slide="{{ block.id }}"
+            data-slide-index="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}>
+
+            {%- if image -%}
+              <div
+                class="slide-image-bg slide-background lazyload {% if image_mobile != blank %} slide-image--has-mobile{% endif %}"
+                data-bgset="{% render 'bgset', image: image %}"
+                data-sizes="auto"
+                data-parent-fit="cover"
+                data-block="slide"
+                loading="lazy"
+                {% if image_height %}
+                  style="padding-top: {{ 100 | divided_by: image_aspect_ratio | append: '%' }}"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+              </div>
+              <noscript>
+                <div class="slide-image-bg slide-background no-js-slide"
+                style="background-image:url('{{ block.settings.slide | img_url: '1024x' }}');{% if image_height %}padding-top: {{ 100 | divided_by: image_aspect_ratio | append: '%' }};{% endif %}"
+                ></div>
+              </noscript>
+            {%- else -%}
+              <div class="slide-background__inner">
+                <div class="slide-image-bg slide-background--blank"{% if image_height %} style="padding-top: {{ 100 | divided_by: image_aspect_ratio | append: '%' }};"{% endif %}>
+                  {%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%}
+                  {{- 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' -}}
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if image_mobile -%}
+              <div
+                class="slide-image-bg slide-background lazyload slide-image--mobile"
+                data-bgset="{% render 'bgset', image: image_mobile %}"
+                data-sizes="auto"
+                data-parent-fit="cover"
+                data-block="slide"
+                loading="lazy"
+                {% if image_height %}
+                  style="padding-top: {{ 100 | divided_by: image_mobile_aspect_ratio | append: '%' }}"
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+              </div>
+              <noscript>
+                <div class="slide-image-bg slide-background no-js-slide"
+                style="background-image:url('{{ block.settings.slide_mobile | img_url: '1024x' }}');{% if image_height %}padding-top: {{ 100 | divided_by: image_mobile_aspect_ratio | append: '%' }};{% endif %}"
+                ></div>
+              </noscript>
+            {%- else -%}
+              <div class="slide-background__inner">
+                <div class="slide-image-bg slide-background--blank"{% if image_height %} style="padding-top: {{ 100 | divided_by: image_mobile_aspect_ratio | append: '%' }};"{% endif %}>
+                  {%- capture current -%}{% cycle 1, 2 %}{%- endcapture -%}
+                  {{- 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' -}}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+ 
+           <div class="split-hero__content split-hero__content--{{ content_alignment }}">
+			<div class="container">
+				<div class="row">
+					<div class="split-hero__text">
+						{%- if subheading2 != blank -%}
+							<p class="split-hero__subheading subheading-text"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{{- subheading2 -}}
+							</p>
+							{%- assign animation_delay = animation_delay | plus: 250 -%}
+						{%- endif -%}
+
+						{%- if heading2 != blank -%}
+							<h2 class="split-hero__heading size--heading-1"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{{- heading2 -}}
+							</h2>
+							{%- assign animation_delay = animation_delay | plus: 250 -%}
+						{%- endif -%}
+
+						{%- if text2 != blank -%}
+							<div class="split-hero__richtext"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{{- text2 -}}
+							</div>
+							{%- assign animation_delay = animation_delay | plus: 250 -%}
+						{%- endif -%}
+
+						{%- if cta2 != blank  -%}
+							<div class="split-hero__buttons_gift_right{% if cta2 != blank %} split-hero__buttons_gift--inline{% endif %}"{% if transition_text %} data-aos="fade-up" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+								{%- if cta2 != blank -%}
+									<a tabindex="0" {% if link2 != blank %}href="{{ link2 }}"{% endif %} class="button button--{{ button_size }} button--{{ button_primary_style }}" aria-label="{{ cta2 }}" title="{{ cta2 }}">{{ cta2 }}</a>
+								{%- endif -%}
+							</div>
+						{%- endif -%}
+					</div>
+				</div>
+			</div>
+		    </div>
+
+          
+        </div>
+      </div>
+
+
+      {%- if image_position == 'right' -%}
+        {{- slider -}}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+{
+  "name": "Image with text split",
+  "class": "shopify-section--image-with-text-split",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slideshow"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "color_style",
+      "label": "Arrows and dots color",
+      "default": "white",
+      "options": [
+        {
+          "value": "white",
+          "label": "Light"
+        },
+        {
+          "value": "black",
+          "label": "Dark"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "transition",
+      "label": "Transition style",
+      "default": "fade",
+      "options": [
+        { "label": "Slide", "value": "slide" },
+        { "label": "Fade", "value": "fade" },
+        { "label": "Zoom out", "value": "zoom-out" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay slideshow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "duration",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "unit": "sec",
+      "label": "Change slides every",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "label": "Slide height",
+      "default": "five-fifty-height-hero",
+      "options": [
+        {
+          "value": "one-hundred-height-hero",
+          "label": "Full screen height"
+        },
+        {
+          "value": "original-height",
+          "label": "Image height"
+        },
+        {
+          "value": "seven-fifty-height-hero",
+          "label": "750px"
+        },
+        {
+          "value": "sixty-fifty-height-hero",
+          "label": "650px"
+        },
+        {
+          "value": "five-fifty-height-hero",
+          "label": "550px"
+        },
+        {
+          "value": "four-fifty-height-hero",
+          "label": "450px"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "slide_image_position",
+      "label": "Image position",
+      "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "slide_image_width",
+      "label": "Image width",
+      "options": [
+        {
+          "value": "med_s12|med_s12",
+          "label": "50%"
+        },
+        {
+          "value": "med_s35|med_s25",
+          "label": "60%"
+        },
+        {
+          "value": "med_s34|med_s14",
+          "label": "75%"
+        },
+        {
+          "value": "med_s1",
+          "label": "100%"
+        }
+      ],
+      "default": "med_s12|med_s12"
+    },
+    {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subheading"
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Welcome to Modular"
+    },
+    {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>A unique layout with a striking design</p>"
+    },
+    {
+        "type": "text",
+        "id": "cta",
+        "label": "Button label",
+        "default": "Shop Now"
+    },
+    {
+        "type": "url",
+        "id": "link",
+        "label": "Button link",
+        "default":"/collections/all"
+    },
+    {
+        "type": "text",
+        "id": "subheading2",
+        "label": "Subheading 2"
+    },
+    {
+        "type": "text",
+        "id": "title2",
+        "label": "Heading 2",
+        "default": "Welcome to Modular"
+    },
+    {
+        "type": "richtext",
+        "id": "text2",
+        "label": "Text 2",
+        "default": "<p>A unique layout with a striking design</p>"
+    },
+    {
+        "type": "text",
+        "id": "cta2",
+        "label": "Button label 2",
+        "default": "Shop Now"
+    },
+    {
+        "type": "url",
+        "id": "link2",
+        "label": "Button link 2",
+        "default":"/collections/all"
+    },
+    {
+        "type": "select",
+        "id": "button_size",
+        "label": "Size",
+        "default": "normal",
+        "options": [
+            { "label": "Normal", "value": "normal" },
+            { "label": "Large", "value": "large" }
+        ]
+    },
+    {
+      "type": "select",
+      "id": "button_primary_style",
+      "label": "Style",
+      "default": "primary",
+      "options": [
+        { "label": "Primary", "value": "primary" },
+        { "label": "Secondary", "value": "secondary" },
+        { "label": "Tertiary", "value": "tertiary" },
+        { "label": "Quaternary", "value": "quaternary" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_mobile",
+          "label": "Image mobile",
+          "info": "Desktop image will be used if not set"
+        }  
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Image with text split",
+      "blocks": [
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{%- style -%}
+
+.footer__newsletter>* {
+    padding: 0px 15px;
+}
+
+
+@media screen and (min-width: 768px) {
+  section.section-newsletter.container-wrap {
+    margin-top: 50px;
+  } 
+
+  input#mce-EMAIL--template--14436022157421__newsletter{
+    width: 237px;
+    font-size: 17px;
+  }
+
+ .footer__subscribe {
+      font-weight: 400;
+      font-size: 19px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  section.section-newsletter.container-wrap {
+      margin-top: 40px;
+  } 
+
+  input#mce-EMAIL--template--14436022157421__newsletter{
+    width: 186px;
+  }
+
+ .footer__subscribe {
+      font-weight: 400;
+      font-size: 16px;
+  }
+}  
+  
+{%- endstyle -%}  
+{%- capture form_id -%}NewsletterForm--{{ section.id }}{%- endcapture -%}
+{%- form 'customer', id: form_id, data-newsletter-form: '' -%}
+    <div class="sign-up-form">
+        <input type="hidden" id="contact_tags--{{ section.id }}" name="contact[tags]" value="newsletter"/>
+        <div class="inputGroup mc-field-group">
+            <label for="mce-EMAIL--{{ section.id }}" class="accessible-label">{{ 'general.slide_out_navigation.search_label' | t }}</label>
+            <input class="sign-up-input required email" type="email" value="" name="contact[email]" id="mce-EMAIL--{{ section.id }}" placeholder="{{ 'general.newsletter_signup.email_placeholder' | t }}" required>
+            <input type="hidden" id="newsletter-first-name--{{ section.id }}" name="contact[first_name]" value="Newsletter" />
+            <input type="hidden" id="newsletter-last-name--{{ section.id }}" name="contact[last_name]" value="Subscriber" />
+            <button type="submit" class="sign-up-submit" name="subscribe" id="mc-embedded-subscribe--{{ section.id }}" aria-label="{{ 'general.accessibility.submit' | t }}">
+                <span class="form__submit--large">Subscribe</span>
+            </button>
+        </div>
+    </div>
+    {%- if form.posted_successfully? -%}
+        <div class="sign-up-confirmation p">{{ 'general.newsletter_signup.success_message' | t }}</div>
+    {%- elsif form.errors -%}
+        {{ form.errors | default_errors }}
+    {%- endif -%}
+{%- endform -%}

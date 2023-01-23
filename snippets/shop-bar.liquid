@@ -1,0 +1,172 @@
+{%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+  assign variants_count = product.variants.size
+  assign product_form_id = 'product_form_' | append: product.id | append: '--shop-bar'
+  assign shop_bar = true
+
+  if first_variant.available
+    assign sold_out = false
+  else
+    assign sold_out = true
+  endif
+-%}
+
+<div id="shop-bar" class="shop-bar" data-scroll-lock-fill-gap data-shop-bar>
+  {%- form 'product', product, class: 'product__form product__form--shop-bar', id: product_form_id -%}
+    <div class="product__form-block">
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          {%- comment -%} /partials/product-option.liquid {%- endcomment -%}
+{%- capture selector_id -%}
+	{%- if shop_bar -%}
+		ShopBar-
+	{%- else -%}
+		Product-
+	{%- endif -%}
+	SingleOptionSelector-{{- forloop.index0 -}}-{{- product.id -}}
+{%- endcapture -%}
+
+<div class="selector-wrapper" data-option="option{{ option.position }}">
+	<label for="{{ selector_id }}">
+		{{- option.name -}}
+	</label>
+
+	<select
+		id="{{ selector_id }}"
+		name="options[{{ option.name | escape }}]"
+		data-single-option-selector
+		data-index="option{{ option.position }}">
+		{%- for value in option.values -%}
+			<option
+				value="{{ value | escape }}"
+				{% if option.selected_value == value %}selected="selected"{% endif %}>
+				{{- value -}}
+			</option>
+		{%- endfor -%}
+	</select>
+	{%- render 'icon-arrow' -%}
+</div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <label for="ShopBar-product-select--{{ section.id }}" class="accessible-label">{{ 'general.accessibility.select_variant' | t }}</label>
+      {%- if variants_count > 1 -%}
+        <select
+          name="id"
+          id="ShopBar-product-select--{{ section.id }}"
+          class="product-single__variants"
+          data-product-id="{{ product.id }}"
+          data-product-select>
+          {%- for variant in product.variants -%}
+            {%- if variant.available -%}
+              <option
+                {% if variant == first_variant %} selected="selected" {% endif %}
+                data-sku="{{ variant.sku }}"
+                value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+            {%- else -%}
+              <option disabled="disabled">{{ variant.title }} - {{ 'products.labels.sold_out' | t }}</option>
+            {%- endif -%}
+          {%- endfor -%}
+        </select>
+      {%- else -%}
+        <input name="id" id="ShopBar-product-select--{{ section.id }}" data-product-id="{{ product.id }}" type="hidden" value="{{ first_variant.id }}">
+      {%- endif -%}
+    </div>
+
+    <input type="hidden" class="inputCounter" name="quantity" value="1" data-quantity-field>
+
+    <div class="product__form-block">
+      <button class="product__form-submit" type="submit" data-ajax="{{ settings.enable_ajax_cart }}" data-handle="{{ product.handle }}"{% if sold_out %} disabled{% endif %} data-add-to-cart>
+        <span data-add-to-cart-text>
+          {%- unless sold_out -%}
+            {{- 'products.form.submit' | t -}}
+          {% else %}
+            {{- 'products.form.sold_out' | t -}}
+          {%- endunless -%}
+        </span>
+        {%- render 'icon-check' -%}
+      </button>
+    </div>
+  {%- endform -%}
+
+  <div class="shop-bar__info">
+    {%- if product.media.size > 0 -%}
+      {%- for variant in product.variants -%}
+
+        {%- assign image = variant.featured_image | default: featured_media.preview_image  -%}
+        {%- assign is_shown = '' -%}
+
+        {%- if variant.id == first_variant.id -%}
+          {%- assign is_shown = 'shop-bar__image--shown' -%}
+        {%- endif -%}
+
+        <div class="shop-bar__image lazyload {{ is_shown }}"
+          {% if variant.id == first_variant.id %} data-shop-bar-image-active {% endif %}
+          data-variant-id="{{ variant.id }}"
+          data-bgset="{% render 'bgset', image: image %}"
+          data-sizes="auto"
+          data-parent-fit="cover">
+        </div>
+        <noscript>
+          <div class="shop-bar__image" style="background-image: url({{ image | img_url: '48x48' }});"></div>
+        </noscript>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="shop-bar__image shop-bar__image--shown">
+        {%- comment -%} Show "No image" if product has no media {%- endcomment -%}
+        {%- assign image_url_pattern = product.featured_image | img_url: '48x' | replace: '_48x.', '_{width}x.' -%}
+        {%- assign image_widths = "[48, 96, 144, 192]" -%}
+        <img
+          class="product-image product-image--empty lazyload"
+          src="{{ 'blank.gif' | asset_img_url: '1x1' }}"
+          data-src="{{ image_url_pattern }}"
+          data-widths= "{{ image_widths }}"
+          data-aspectratio="1"
+          data-sizes="auto">
+        <noscript>
+          <img
+            class="product-image product-image--empty"
+            src="{{ product.featured_image | img_url: '48x' }}"
+            width="48"
+            height="48">
+        </noscript>
+      </div>
+    {%- endif -%}
+
+    <p class="shop-bar__title">{{ product.title | strip_html }}</p>
+
+    <div class="shop-bar__price">
+      {%- assign first_variant = product.selected_or_first_available_variant -%}
+{%- assign on_sale = false -%}
+{%- if first_variant.compare_at_price > first_variant.price -%}
+	{%- assign on_sale = true -%}
+	{%- assign on_sale_class = ' is-sale' -%}
+{%- endif -%}
+
+<div class="product__price" data-price-wrapper>
+	<span data-product-price>{{ first_variant.price | money }}</span>
+	<s class="product__price__sale" data-compare-price>
+		{%- if on_sale -%}
+			{{- first_variant.compare_at_price | money -}}
+		{%- endif -%}
+	</s>
+	{%- if first_variant.unit_price_measurement -%}
+		{%- capture unit_price_separator -%}
+			<span aria-hidden="true">/</span><span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}&nbsp;</span>
+		{%- endcapture -%}
+		<div class="product__unit-price" data-product-unit>
+			<span data-product-unit-price>
+				{{ first_variant.unit_price | money }}
+				{%- if first_variant.unit_price_measurement.reference_value != 1 -%}
+					{{- first_variant.unit_price_measurement.reference_value -}}
+				{%- endif -%}
+			</span>
+			{{ unit_price_separator }}
+			<span data-product-base>{{ first_variant.unit_price_measurement.reference_unit }}</span>
+		</div>
+	{%- endif -%}
+</div>
+    </div>
+  </div>
+</div>
+<!-- end add-to-cart -->

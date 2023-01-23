@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "Optima nova";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/optima_nova/optimanova_n4.80ce677c7e6e9f158250df66f71dccc3eed0080e.woff2?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=0ce3ad3103338e00d506a527b81ee93b8726295586ba4ffad1ef872c23c7774b") format("woff2"),
+       url("https://fonts.shopifycdn.com/optima_nova/optimanova_n4.4a1f98c8389acb3d0e4e06955d971ac0cb806edb.woff?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=2fe368397594da17b77298894e4208f52864665c4eaa9dc6c2d546f65976ff2a") format("woff");
+}
+
+@font-face {
+  font-family: Helvetica;
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/helvetica/helvetica_n3.e01288c0d2e8e4f4101819b750499a38c41ed953.woff2?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=33df28ad18e02a397396e9d12a40ef96f9dfe5aa6dfd477002a757c18fecd470") format("woff2"),
+       url("https://fonts.shopifycdn.com/helvetica/helvetica_n3.689236138e1e3e1b03386488943f79b29e240af5.woff?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=f92bd3ec2bbb5859c94b9e05658a77c8f15fd4ad1d7b8bb34baf4498f80d4414") format("woff");
+}
+
+
+
+  @font-face {
+  font-family: "Optima nova";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/optima_nova/optimanova_n7.b492ee6969a95d8817c08f489386ebda6565b577.woff2?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=b9007b7436959541298775497404b41aabaa6ac76264a0ff6129b0030f0ff4ee") format("woff2"),
+       url("https://fonts.shopifycdn.com/optima_nova/optimanova_n7.51d238ff7eb88f28d3fd5c87e45068db78677605.woff?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=df4137ce43407b9687a93c426eed09d53559879308d56cb4a16539aa66820d62") format("woff");
+}
+
+
+
+
+  @font-face {
+  font-family: Helvetica;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/helvetica/helvetica_n4.fe093fe9ca22a15354813c912484945a36b79146.woff2?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=36a20ae434ae2a91988066cfb9d29f104f8519d4a15a6b07f014adaf8f0974bc") format("woff2"),
+       url("https://fonts.shopifycdn.com/helvetica/helvetica_n4.8bddb85c18a0094c427a9bf65dee963ad88de4e8.woff?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=b7ee8932cbf2046058ab5059a4ecc7b3a4585316167a81b57ac246f417a4348b") format("woff");
+}
+
+
+
+
+  @font-face {
+  font-family: Helvetica;
+  font-weight: 300;
+  font-style: oblique;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/helvetica/helvetica_o3.8738cda7d30fedf1c8410fa8bf91499e05b2d370.woff2?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=0b818b3ad5aae2c7530d7e96a6196f2707dcda5e494fcda2ae79c14ed889f13b") format("woff2"),
+       url("https://fonts.shopifycdn.com/helvetica/helvetica_o3.3d948a11eabbcdbbff983bdb2311e266180be9d7.woff?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=1dc2d51af2303a6a04c9655428606bba49fe9a2ccaf650218498e97e12a7de0a") format("woff");
+}
+
+
+
+
+  @font-face {
+  font-family: Helvetica;
+  font-weight: 400;
+  font-style: oblique;
+  font-display: swap;
+  src: url("https://fonts.shopifycdn.com/helvetica/helvetica_o4.f9832a0fc1ee8fc5a359636e410d6941e1e4ca03.woff2?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=837e72aef52b8426d38e6f986e170c86db7128c5cfeba57088bee635fc8dbede") format("woff2"),
+       url("https://fonts.shopifycdn.com/helvetica/helvetica_o4.0063286aec443697ebae04eeb9c78b820f9f7805.woff?h1=YmVhcmZydWl0amV3ZWxyeS5jb20&hmac=520e214376c5192874e6deb30983347de50afcf89e5de0e71259132c9ce2bc97") format("woff");
+}
+

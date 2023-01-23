@@ -1,0 +1,113 @@
+{% comment %}
+    Renders list of collections in grid layout
+
+    Accepts:
+    - collection: {Object} collection
+    - image: {Object} image
+    - image_position: {Object} image_position
+    - unique: {String} id
+    - overlay_color: {Color} Overlay color
+    - overlay_opacity: {Number} Overlay opacity
+    - shopify_attributes: {Object} block.shopify_attributes
+
+    Usage:
+    {% render 'collection-grid-item', collection: collection, image: image, image_position: image_position, unique: unique, overlay_color: overlay_color, overlay_opacity: overlay_opacity, shopify_attributes: shopify_attributes %}
+{% endcomment %}
+
+{%- liquid
+  assign button_text = section.settings.button_text
+  assign button_style = section.settings.button_style
+  assign collections_columns = section.settings.collections_columns | plus: 0
+  assign columns_size = collections_columns | replace: '1', ''
+  assign grid_block_size = 'block s1 lg_s1' | append: columns_size | append: ' med_s12'
+  assign image_position = image_position | default: 'center-center'
+  assign transition_grid_items = settings.transition_grid_items
+  assign animation_anchor = '#CollectionModule--' | append: section.id
+
+  unless collection == empty
+    assign title = collection.title | strip_html | truncate: 150
+    assign description = collection.description | strip_html | truncate: 250
+    assign url = collection.url
+  else
+    assign title = 'onboarding.collection' | t
+    assign description = 'onboarding.collection_description' | t
+    assign url = '#'
+  endunless
+
+  if image == blank
+    assign image_url_pattern = collection.products.first.featured_image | img_url: '1024x' | replace: '_1024x.', '_{width}x.'
+    assign image_widths = "[180, 360, 540, 720, 960, 1024, 1280]"
+  endif
+-%}
+
+{%- if overlay_color != blank -%}
+  {%- style -%}
+    #CollectionBlock--{{ section.id }}-{{ unique }} .collection-block__image::after { background-color: {{ overlay_color }}; opacity: {{ overlay_opacity }}; }
+  {%- endstyle -%}
+{%- endif -%}
+
+<div id="CollectionBlock--{{ section.id }}-{{ unique }}" class="collection-block {{ grid_block_size }}"{% if transition_grid_items and mosaic %} data-aos="zoom-in-up" data-aos-anchor="{{ animation_anchor }}" data-aos-order="{{ mosaic }}"{% elsif transition_grid_items %} data-aos="zoom-in-up"{% endif %}{% if shopify_attributes != blank %} {{ shopify_attributes }}{% endif %}>
+  <a href="{{ url }}" aria-label="{{ title }}" class="collection-block__link">
+    {%- if collection != empty -%}
+      <div class="collection-block__image{% if settings.transition_collections_list %} collection-block__image--zoom{% endif %}">
+        <div
+          class="collection-block__image-bg{% if image != blank %} lazyload bg-position--{{ image_position }}{% endif %}"
+          {% if image != blank %}
+          data-sizes="auto"
+          data-parent-fit="cover"
+          data-bgset="{% render 'bgset', image: image %}"
+          {% endif %}>
+          {%- if image == blank -%}
+            <img
+              class="collection-block__image__empty lazyload"
+              src="{{ 'blank.gif' | asset_img_url: '1x1' }}"
+              data-src="{{ image_url_pattern }}"
+              data-widths= "{{ image_widths }}"
+              data-aspectratio="1"
+              data-sizes="auto"
+              width="1024"
+              height="1024"
+              alt="{{ collection.title | strip_html | escape }}">
+            <noscript>
+              <img
+                class="collection-block__image__empty"
+                src="{{ product.featured_image | img_url: '1024x' }}"
+                width="1024"
+                height="1024"
+                alt="{{ collection.title | strip_html | escape }}">
+            </noscript>
+          {%- endif -%}
+        </div>
+
+        {%- if image != blank -%}
+          <noscript>
+            <div class="collection-block__image-bg no-js-image bg-position--{{ image_position }}" style="background-image:url('{{ image | img_url: '1024x' }}');"></div>
+          </noscript>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      {%- if collection == empty -%}
+        <div class="collection-block__image{% if settings.transition_collections_list %} collection-block__image--zoom{% endif %}">
+          <div class="collection-block__image-bg svg-placeholder">
+            {%- capture current -%}{% cycle 'current': 1, 2, 3, 4, 5 %}{%- endcapture -%}
+            {{- 'collection-' | append: current | placeholder_svg_tag -}}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="collection-block__info text-position--{{ section.settings.coll_text_position }}">
+      <div>
+        <h3 class="collection-block__title">{{ title }}</h3>
+        {%- if section.settings.show_description and description != blank -%}
+          <p class="collection-block__description">
+            {{- description -}}
+          </p>
+        {%- endif -%}
+        {%- if button_text != blank -%}
+          <span class="button button--{{ button_style }}">{{ button_text }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+  </a>
+</div>

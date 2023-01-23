@@ -1,0 +1,81 @@
+
+{%- liquid
+  assign show_sort_filter = section.settings.show_sort_filter
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+  assign show_featured_image = section.settings.show_featured_image
+  assign enable_filters = section.settings.enable_filters
+  assign filter_mode = section.settings.filter_mode
+  assign filter_by_tags = false
+  assign filter_by_filters = false
+  assign sort_url = '?'
+  assign featured_products_columns = 4
+
+  case filter_mode
+    when 'default'
+      assign filter_by_filters = true
+    when 'tag'
+      assign filter_by_tags = true
+    when 'group'
+      assign filter_by_tags = true
+  endcase
+
+  if enable_filters and filter_by_tags
+    assign selected_tags = ''
+
+    for tag in current_tags
+      unless tag contains '_badge' and tag contains '_preorder'
+        assign current_tag_handle = tag | replace: '&#39;', '' | replace: '&#34;', '' | handle
+        assign selected_tags = selected_tags | append: current_tag_handle
+
+        unless forloop.last
+          assign selected_tags = selected_tags | append: '+'
+        endunless
+      endunless
+    endfor
+    assign sort_url = selected_tags | append: '?'
+  endif
+
+  if enable_filters and filter_by_filters
+    assign active_values = '?'
+    for filter in collection.filters
+      for filter_active in filter.active_values
+        assign active_values = active_values | append: filter_active.param_name | append: '=' | append: filter_active.value | append: '&'
+      endfor
+    endfor
+    assign sort_url = active_values
+  endif
+-%}
+
+{% comment %}
+  Set collectionBlock size classes
+  These are applied in the collection-grid__block.liquid file
+{% endcomment %}
+{%- assign products_rows = settings.products_rows | plus: 0 -%}
+{%- assign products_columns = featured_products_columns | plus: 0 -%}
+{%- assign products_columns_mobile = settings.products_columns_mobile | plus: 0 -%}
+{%- assign products_limit = products_columns | times: products_rows -%}
+{%- assign columns_size = products_columns | replace: '1', '' -%}
+{%- assign columns_size_mobile = products_columns_mobile | replace: '1', '' -%}
+{%- assign grid_block_size = 'lg_s1' | append: columns_size -%}
+{%- assign grid_block_size_mobile = 's1' | append: columns_size_mobile -%}
+
+{% comment %} Set tablet size to be one-half {% endcomment %}
+{%- if products_columns > 2 -%}
+	{%- assign grid_block_size = 'lg_s1' | append: columns_size | append: ' med_s13' -%}
+{%- endif -%}
+
+{%- paginate collection.products by products_limit -%}
+  <div class="collection-grid__row collection-grid__row--grid"
+  data-show-quantity="{{ settings.show_quantity }}"
+  data-tags='{% if selected_tags != blank %}{{ selected_tags | split: '+' | json }}{% else %}[]{% endif %}'
+  {% if show_sort_filter %}data-sort="{{ sort_by }}"{% endif %}
+  data-collection="{{ collection.url | default: routes.all_products_collection_url }}{% if filter_mode == 'default' %}?{% endif %}"
+  {% if settings.enable_infinity_scroll %}data-infinity{% endif %}
+  data-collection-products>
+
+  {% for product in collections.fw-22-collection.products limit:4%}  
+     {%- render 'product-grid-item', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
+  {%- endfor -%}
+  </div>
+{%- endpaginate -%}
+   

@@ -1,0 +1,131 @@
+{%- comment -%} Category List {%- endcomment -%}
+<div data-section-id="{{ section.id }}" data-section-type="category-list">
+  <div class="category-list"{% if section.settings.color_categories_bg != blank %} style="background-color: {{ section.settings.color_categories_bg }};"{% endif %}>
+    <div class="category-list__slider" data-category-list-slider>
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign image = block.settings.category_image
+          assign image_widths = '[100,120,140,160,180,200,240,280,320,360]'
+          assign image_url_pattern = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+          assign category_url = block.settings.category_url
+          assign category_width = block.settings.category_width
+          assign category_aspect_ratio = image.aspect_ratio | default: 1.333
+          assign padding_top = 1 | divided_by: category_aspect_ratio | times: 100 | round: 2
+        -%}
+
+        <div class="category-list__slide" 
+          data-category-list-slide="{{- block.id -}}" 
+          data-slide-index="{{ forloop.index0 }}" 
+          {{ block.shopify_attributes }}>
+          <div class="category-list__item" style="width: {{ category_width }}px">
+            <div class="category-list__item-container" style="padding-top: {{ padding_top }}%">
+              {%- if image != blank -%}
+                {%- capture category_image -%}
+                  <img
+                    class="category-list__item-image lazyload"
+                    src="{{ 'blank.gif' | asset_img_url: '1x1' }}"
+                    data-src="{{ image_url_pattern }}"
+                    data-widths= "{{ image_widths }}"
+                    data-aspectratio="{{ image.aspect_ratio }}"
+                    data-sizes="auto"
+                    loading="lazy"
+                    alt="{{ image.alt | escape }}">
+                  <noscript>
+                    <img src="{{ image | img_url: '380x' }}" alt="{{ image.alt | escape }}">
+                  </noscript>
+                {%- endcapture -%}
+
+                {%- if category_url != blank -%}
+                  <a href="{{ category_url }}" class="category-list__item-link" title="{{ image.alt | escape }}">
+                    {{- category_image -}}
+                  </a>
+                {%- else -%}
+                  {{- category_image -}}
+                {%- endif -%}
+              {%- else -%}
+                {%- if category_url != blank -%}
+                  <a href="{{ category_url }}" class="category-list__item-link">
+                    {{- 'logo' | placeholder_svg_tag -}}
+                  </a>
+                {%- else -%}
+                  <div class="category-list__item-image svg-placeholder">
+                    {{- 'logo' | placeholder_svg_tag -}}
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category list",
+  "class": "shopify-section--category-list",
+  "max_blocks": 25,
+  "settings": [
+    {
+      "type": "color",
+      "id": "color_categories_bg",
+      "label": "Background color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "category_image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "category_width",
+          "label": "categories width",
+          "min": 100,
+          "max": 180,
+          "step": 10,
+          "unit": "px",
+          "default": 120
+        },
+        {
+          "type": "url",
+          "id": "category_url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category list",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "item_category"
+        },
+        {
+          "type": "item_category"
+        },
+        {
+          "type": "item_category"
+        },
+        {
+          "type": "item_category"
+        },
+        {
+          "type": "item_category"
+        },
+        {
+          "type": "item_category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

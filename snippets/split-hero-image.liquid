@@ -1,0 +1,34 @@
+<div class="split-hero__box{% if image_mobile != blank %} split-hero__box--has-mobile{% endif %}">
+	{%- unless image == blank -%}
+		<div class="split-hero__image split-hero__image--desktop split-hero__image--{{ image_position }} lazyload"
+			loading="lazy"
+			data-bgset="{% render 'bgset', image: image %}"
+			data-sizes="auto"
+			data-parent-fit="cover"
+		>
+		</div>
+		<noscript>
+			<div class="split-hero__image split-hero__image--desktop split-hero__image--{{ image_position }}" style="background-image:url('{{ image | img_url: '2048x' }}');"></div>
+		</noscript>
+	{%- else -%}
+		<div class="split-hero__image split-hero__image--desktop split-hero__image--onboarding">
+			{{- 'image' | placeholder_svg_tag: 'placeholder-svg' -}}
+		</div>
+	{%- endunless -%}
+
+	{%- unless image_mobile == blank -%}
+		{%- assign image = image_mobile -%}
+		<div class="split-hero__image split-hero__image--mobile split-hero__image--{{ image_position }} lazyload"
+			loading="lazy"
+			data-bgset="{% render 'bgset', image: image %}"
+			data-sizes="auto"
+			data-parent-fit="cover"
+		>
+		</div>
+		<noscript>
+			<div class="split-hero__image split-hero__image--mobile split-hero__image--{{ image_position }}"
+			style="background-image:url('{{ image | img_url: '2048x' }}');"
+			></div>
+		</noscript>
+	{%- endunless -%}
+</div>

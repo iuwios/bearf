@@ -1,0 +1,110 @@
+{%- liquid
+  assign is_first_title = true
+  assign is_first_text = true
+  assign tab_title = 'onboarding.tab_title' | t
+  assign tab_content = 'onboarding.tab_content' | t
+-%}
+
+<section
+  id="tabs-{{ section.id }}"
+  class="tabs"
+  data-section-id="{{ section.id }}"
+  data-section-type="tabs">
+
+  {%- for block in section.blocks -%}
+    {%- capture nav -%}
+      {{- nav -}}
+
+      <button class="tab-title{% if is_first_title %} is-active{% endif %}" data-tab-title {{ block.shopify_attributes }}>
+        {{ block.settings.title | default: block.settings.page.title | default: tab_title }}
+        <span class="button-toggle">
+	{%- render 'icon-plus' -%}
+	{%- render 'icon-minus' -%}
+</span>
+      </button>
+
+        {%- if is_first_title -%}
+          {%- assign is_first_title = false -%}
+        {%- endif -%}
+    {%- endcapture -%}
+
+    {%- capture content -%}
+      {{- content -}}
+
+      <div class="tab-content rte{% if is_first_text %} is-active{% endif %}" data-tab-content>{{ block.settings.text | default: block.settings.page.content | default: tab_content }}</div>
+      {%- if is_first_text -%}
+        {%- assign is_first_text = false -%}
+      {%- endif -%}
+    {%- endcapture -%}
+  {%- endfor -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="tabs-wrapper">
+      <div class="container">
+        <div class="tabs{% if section.blocks.size == 1 %} tabs--single{% endif %}" data-tabs>
+          <div class="tabs-nav" data-tabs-nav>
+            {{- nav -}}
+          </div>
+
+          <div class="tabs-contents" data-tabs-contents>
+            {{- content -}}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Tabs",
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Use this tab content block to share more information about the product, for example product details, size fit, shipping policies, or anything you think would help merchants make an informed decision about your product or collection.</p>"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Text",
+      "name": "Tabs",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,55 @@
+{%- comment -%} /snippets/search-results-item.liquid {%- endcomment -%}
+
+{%- capture title -%}
+<div class="search-results__item__info product-block__info product-block__info--{{ settings.product_title_position }}">
+  <div class="search-results__item__title">
+    {{- item.title | strip_html | escape -}}
+  </div>
+</div>  
+{%- endcapture -%}
+<a
+  class="search-results__item product-block block {{ grid_block_size }} {{ grid_block_size_mobile }}"
+  href="{{ item.url }}"
+  title="{{ item.title | strip_html | escape }}"
+  aria-label="{{ item.title | strip_html | escape }}">
+  <div class="product-block__inner"{% if settings.transition_grid_items %} data-aos="zoom-in-up"{% endif %}>
+    <div class="search-results__item__image product-block__image">
+      {%- if item.object_type == 'article' -%}
+        {%- assign image_url_pattern = item.image | img_url: '540x' | replace: '_540x.', '_{width}x.' -%}
+        {%- assign image_widths = "[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048, 2450, 2700, 3000, 3350, 3750, 4100]" -%}
+        <img
+          class="search-results__item__img lazyload"
+          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          data-src="{{ image_url_pattern }}"
+          data-widths= "{{ image_widths }}"
+          data-aspectratio="1"
+          data-sizes="auto"
+          width="540"
+          height="540"
+          alt="{{ item.image.alt | strip_html | escape | default: item.title | strip_html | escape }}">
+        <noscript>
+          <img
+            class="search-results__item__img"
+            src="{{ item.image | img_url: '1024x' }}"
+            width="1024"
+            height="1024"
+            alt="{{ item.image.alt | strip_html | escape | default: item.title | strip_html | escape }}">
+        </noscript>
+
+        <span class="search-results__item__badge product-status-flag product-status-flag--custom product-status-flag--{{ settings.product_badge_style }}" data-badge>
+          {{- 'search.badge.article' | t -}}
+        </span>
+      {%- elsif item.object_type == 'page' -%}
+        <span class="search-results__item__badge product-status-flag product-status-flag--custom product-status-flag--{{ settings.product_badge_style }}" data-badge>
+          {{- 'search.badge.page' | t -}}
+        </span>
+
+        {{- title -}}
+      {%- endif -%}
+    </div>
+
+    {%- if item.object_type == 'article' -%}
+      {{- title -}}
+    {%- endif -%}
+  </div>
+</a>

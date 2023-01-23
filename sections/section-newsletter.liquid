@@ -1,0 +1,171 @@
+{% comment %} Settings {% endcomment %}
+{%- liquid
+  assign title = section.settings.title
+  assign content = section.settings.content
+  assign color = section.settings.color
+  assign background = section.settings.background
+-%}
+
+{% comment %} Section {% endcomment %}
+{%- style -%}
+  .section-newsletter[data-section-id="{{ section.id }}"] { background-color: {{ background }}; color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] h2 { color: {{ color }} !important; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input::-webkit-input-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input::-moz-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input:-ms-input-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input:-moz-placeholder { color: {{ color }}; }
+  .section-newsletter[data-section-id="{{ section.id }}"] input,
+  .section-newsletter[data-section-id="{{ section.id }}"] button.sign-up-submit { color: {{ color }} !important; }
+  .section-newsletter[data-section-id="{{ section.id }}"] .sign-up-form .inputGroup { border-color: {{ color }}; }
+
+.footer__newsletter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.footer__subscribe {
+   font-weight: 500;
+   font-size: 20px;
+}
+
+.footer__newsletter>* {
+    padding: 0 20px;
+}
+.contact-form{
+    margin-top: 0px;
+}
+
+span.form__submit--large {
+    color: #4F3C36;
+}
+
+input#mce-EMAIL--template--14436022157421__newsletter {
+    border-radius: 1em;
+}
+
+
+input#mce-EMAIL--template--14436022157421__newsletter {
+    padding-left: 25px;
+}
+
+div#shopify-section-template--14436022157421__newsletter {
+    margin-top: -20px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .footer__newsletter {
+      flex-wrap: wrap;
+      text-align: center;
+      justify-content: center;
+  }
+
+  .sign-up-form .inputGroup {
+      display: block;
+      position: relative;
+      height: 48px;
+      width: 100%;
+      margin-bottom: 0;
+  }
+
+  .sign-up-submit.btn, .sign-up-submit.shopify-payment-button__button--unbranded, button.sign-up-submit {
+      position: absolute;
+      background-color: #fff;
+      border: 0;
+      color: #fff;
+      border: 2px solid #fff;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 101px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s ease;
+      border-radius: 0 1em 1em 0;
+      font-size: 15px;
+  }
+
+  .comment-form input, .comment-form select, .comment-form textarea, .contact-form input, .contact-form select, .contact-form textarea {
+      line-height: normal;
+      font-size: 16px;
+  }
+
+  input#mce-EMAIL--template--14436022157421__newsletter {
+      padding-left: 15px;
+  }
+}
+
+{%- endstyle -%}
+
+<section class="section-newsletter container-wrap" data-section-type="newsletter" data-section-id="{{ section.id }}">
+  <div class="container sign-up">
+    <div class="footer__newsletter">
+      {%- if title != blank -%}
+        <div class="footer__subscribe rte rte--nomargin">{{ title }}</div>
+      {%- endif -%}
+
+      {%- if content != blank -%}
+        <div class="sign-up-body">{{ content }}</div>
+      {%- endif -%}
+
+      {%- render 'newsletter' -%}
+    </div>
+  </div>
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+{
+  "name": "Newsletter",
+  "class": "shopify-section--newsletter",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Text",
+      "default": "#222"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#fff"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Subheading",
+      "default": "<p>Let's keep in touch</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter",
+      "category": "Text",
+      "settings":
+      {
+        "title": "Newsletter",
+        "content": "<p>Let's keep in touch</p>"
+      }
+    }
+  ]
+}
+{% endschema %}

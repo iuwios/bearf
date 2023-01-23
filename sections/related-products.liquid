@@ -1,0 +1,73 @@
+{%- assign heading = section.settings.title -%}
+
+{% comment %}
+  Set collectionBlock size classes
+  These are applied in the collection-grid__block.liquid file
+{% endcomment %}
+{%- assign products_rows = settings.products_rows | plus: 0 -%}
+{%- assign products_columns = settings.products_columns | plus: 0 -%}
+{%- assign products_columns_mobile = settings.products_columns_mobile | plus: 0 -%}
+{%- assign products_limit = products_columns | times: products_rows -%}
+{%- assign columns_size = products_columns | replace: '1', '' -%}
+{%- assign columns_size_mobile = products_columns_mobile | replace: '1', '' -%}
+{%- assign grid_block_size = 'lg_s1' | append: columns_size -%}
+{%- assign grid_block_size_mobile = 's1' | append: columns_size_mobile -%}
+
+{% comment %} Set tablet size to be one-half {% endcomment %}
+{%- if products_columns > 2 -%}
+	{%- assign grid_block_size = 'lg_s1' | append: columns_size | append: ' med_s13' -%}
+{%- endif -%}
+
+<section class="related-products container-wrap collection-grid"
+	data-columns="{{ products_columns }}"
+	data-section-type="related-products"
+	data-section-id="{{ section.id }}"
+	data-product-id="{{ product.id }}"
+	data-show-quantity="{{ settings.show_quantity }}"
+	data-limit="{{ settings.products_columns }}">
+
+	{%- if recommendations.performed -%}
+		{%- if recommendations.products_count > 0 -%}
+
+			{%- assign align_center = false -%}
+			{%- if recommendations.products_count < products_columns -%}
+				{%- assign align_center = true -%}
+			{%- endif -%}
+
+			{%- if heading != blank -%}
+				<div class="page-title">
+					<div class="container">
+						<h2>{{ heading }}</h2>
+					</div>
+				</div>
+			{%- endif -%}
+
+			<div class="collection-grid__row{% if align_center %} row--center{% endif %}">
+				{%- for product in recommendations.products -%}
+					{%- render 'product-grid-item', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
+				{%- endfor -%}
+			</div>
+		{%- endif -%}
+	{%- else -%}
+		<div class="related__placeholder"></div>
+	{%- endif -%}
+</section>
+
+{% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+{% schema %}
+{
+	"name": "Product recommendations",
+	"settings": [
+		{
+			"type": "paragraph",
+			"content": "Dynamic recommendations change and improve with time. [Learn more](https://help.shopify.com/en/themes/development/recommended-products)"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading",
+			"default": "Related products"
+		}
+	]
+}
+{% endschema %}

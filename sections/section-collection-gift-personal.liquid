@@ -1,0 +1,276 @@
+{% comment %} Settings {% endcomment %}
+{%- assign featured_collection = collections[section.settings.featured_collection] | default: false -%}
+{%- assign title = section.settings.title -%}
+{%- assign linkbutton_title = section.settings.linkbutton_title -%}
+{%- assign show_description = section.settings.show_description -%}
+{%- assign layout = section.settings.products_layout -%}
+{%- assign show_button = section.settings.show_button -%}
+{%- assign button_style = section.settings.button_style -%}
+{%- assign color_style = section.settings.color_style -%}
+{%- assign enable_carousel = false -%}
+{%- if layout == 'carousel' -%}
+	{%- assign enable_carousel = true -%}
+{%- endif -%}
+
+{%- style -%}
+
+ @media not all and (max-width: 768px){
+  .block.s1.gift-font {
+      font-size: 50px;
+      font-weight: 400;
+  }
+
+  .button-wrapper.gift-personal {
+    margin-bottom: 0px;
+  }
+
+   .collection-grid .button.gift{
+    min-width: 215px;
+    min-height: 57px;
+    font-family: 'Quicksand';
+    font-size: 20px;
+    line-height: 30px;
+    font-weight:500;
+  } 
+ }
+ @media all and (max-width: 768px){
+
+  .collection-grid.container-wrap.gift-collection {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .block.s1.gift-font {
+      font-size: 24px;
+      font-weight: 400;
+  }
+  .collection-grid__header.row.row-sm.giftguide {
+      margin-top: 28px;
+      margin-bottom: 28px;
+  }
+  .row.original-height.gift-holiday {
+      margin-bottom: -66px;
+  }
+   
+  .collection-grid .button.gift{
+    min-width: 72px;
+    min-height: 42px;
+    font-family: 'Quicksand';
+    font-size: 15px;
+    line-height: 19px;
+    font-weight:500;
+  }
+   
+  .button-wrapper.gift-personal {
+    margin-top: -37px;
+    margin-bottom: 85px;
+  } 
+}
+
+ 
+  
+
+  
+{%- endstyle -%}
+{% comment %} Layout {% endcomment %}
+{% comment %}
+  Set collectionBlock size classes
+  These are applied in the collection-grid__block.liquid file
+{% endcomment %}
+{%- assign products_rows = settings.products_rows | plus: 0 -%}
+{%- assign products_columns = settings.products_columns | plus: 0 -%}
+{%- assign products_columns_mobile = settings.products_columns_mobile | plus: 0 -%}
+{%- assign products_limit = products_columns | times: products_rows -%}
+{%- assign columns_size = products_columns | replace: '1', '' -%}
+{%- assign columns_size_mobile = products_columns_mobile | replace: '1', '' -%}
+{%- assign grid_block_size = 'lg_s1' | append: columns_size -%}
+{%- assign grid_block_size_mobile = 's1' | append: columns_size_mobile -%}
+
+{% comment %} Set tablet size to be one-half {% endcomment %}
+{%- if products_columns > 2 -%}
+	{%- assign grid_block_size = 'lg_s1' | append: columns_size | append: ' med_s13' -%}
+{%- endif -%}
+{%- assign products_rows = section.settings.products_rows | plus: 0 -%}
+{%- assign products_limit = products_columns | times: products_rows -%}
+
+{% comment %} Shop All Link {% endcomment %}
+{%- capture shop_all_button -%}
+	{%- if show_button -%}
+		<div class="button-wrapper gift-personal">
+			<a href="{{ featured_collection.url | default: '#' }}" class="button gift button--{{ button_style }} " aria-label="{{ featured_collection.title | strip_html }}" title="{{ featured_collection.title | strip_html }}">
+			        {%- unless linkbutton_title == blank -%}
+						{{ linkbutton_title }}
+					{%- endunless -%}
+			</a>
+		</div>
+	{%- endif -%}
+{%- endcapture -%}
+
+{% comment %} Collection Block, contains .js-quickView {% endcomment %}
+{%- capture collection_products -%}
+	{%- if featured_collection -%}
+		{%- unless featured_collection.products == empty -%}
+				{%- if enable_carousel -%}
+					{%- for product in featured_collection.products -%}
+						{%- render 'product-grid-item', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
+					{%- endfor -%}
+				{%- else -%}
+					{%- for product in featured_collection.products limit: products_limit  -%}
+						{%- render 'product-grid-item', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
+					{%- endfor -%}
+				{%- endif -%}
+		{%- else -%}
+			<div class="collection-no-products">
+				<div class="container">
+					<h4>{{ 'collections.errors.no_products' | t }}</h4>
+
+					{{- shop_all_button -}}
+				</div>
+			</div>
+		{%- endunless -%}
+	{%- else -%}
+		{%- for i in (1..products_limit) -%}
+			{%- render 'product-grid-item', fallback: true, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
+		{%- endfor -%}
+	{%- endif -%}
+{%- endcapture -%}
+
+{% comment %} Section {% endcomment %}
+<section class="featured-collection collection-grid container-wrap gift-collection" id="collection-module-{{ section.id }}"
+	data-section-type="featured-collection"
+	data-section-id="{{ section.id }}"
+	data-show-quantity="{{ settings.show_quantity }}"
+	data-style="{{ color_style }}"
+	data-collection-products>
+	<div class="container">
+		{%- if title != blank or show_description and featured_collection.description != blank -%}
+			<div class="collection-grid__header row row-sm giftguide ">
+				<div class="block s1 gift-font">
+					{%- unless title == blank -%}
+						{{ title }}
+					{%- endunless -%}
+
+					{%- if show_description and featured_collection.description != blank -%}
+						<p>{{ featured_collection.description | strip_html }}</p>
+					{%- endif -%}
+				</div>
+			</div>
+		{%- endif -%}
+	</div>
+
+	{%- if enable_carousel -%}
+		<div class="collection-slider__wrapper">
+			<div class="collection-grid__row collection-grid__row--slider collection-slider" data-collection-slider>
+				{{- collection_products -}}
+			</div>
+
+			<button class="slider-arrow slider-arrow--prev" aria-label="{{ 'slideshow.previous' | t }}" type="button" data-prev-arrow>{% render "icon-submit" %}</button>
+			<button class="slider-arrow slider-arrow--next" aria-label="{{ 'slideshow.next' | t }}" type="button" data-next-arrow>{% render "icon-submit" %}</button>
+		</div>
+	{%- else -%}
+		<div class="collection-grid__row collection-grid__row--grid">
+			{{- collection_products -}}
+		</div>
+	{%- endif -%}
+
+	{%- unless featured_collection and featured_collection.products == empty -%}
+		{{- shop_all_button -}}
+	{%- endunless -%}
+</section>
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+{
+	"name": "F collection gift p",
+	"class": "shopify-section--featured-collection-p",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Content"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "collection",
+			"id": "featured_collection",
+			"label": "Collection"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_description",
+			"label": "Show collection description",
+			"default": false
+		},
+		{
+			"type": "select",
+			"id": "products_layout",
+			"label": "Layout",
+			"default": "grid",
+			"options": [
+				{ "value": "grid", "label": "Grid" },
+				{ "value": "carousel", "label": "Carousel" }
+			]
+		},
+		{
+			"type": "range",
+			"id": "products_rows",
+			"label": "Products rows",
+			"info": "For grid layout only",
+			"default": 2,
+			"min":1,
+			"max":4,
+			"step":1
+		},
+		{
+			"type": "checkbox",
+			"id": "show_button",
+			"label": "Show collection link button",
+			"default": true
+		},
+		{
+			"type": "text",
+			"id": "linkbutton_title",
+			"label": "Link Button Title"
+		},      
+		{
+			"type": "select",
+			"id": "button_style",
+			"label": "Button style",
+			"default": "primary",
+			"options": [
+				{ "label": "Primary", "value": "primary" },
+				{ "label": "Secondary", "value": "secondary" },
+              	{ "label": "Tertiary", "value": "tertiary" }
+			]
+		},
+		{
+			"type": "select",
+			"id": "color_style",
+			"label": "Arrows style",
+			"default": "white",
+			"options": [
+				{
+					"value": "white",
+					"label": "Light"
+				},
+				{
+					"value": "black",
+					"label": "Dark"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"category": "Collection",
+			"name": "F collection gift p",
+			"settings": {
+				"featured_collection": "frontpage"
+			}
+		}
+	]
+}
+{% endschema %}

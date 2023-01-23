@@ -1,0 +1,245 @@
+{%- assign text = section.settings.text -%}
+{%- assign link = section.settings.link -%}
+
+{%- style -%}
+	.site-alert { color: {{ section.settings.color_text }}; background-color: {{ section.settings.color_bg }}; }
+    .site-alert-2 { 
+        color: {{ section.settings.color_text_2 }}; 
+        background-color: {{ section.settings.color_bg_2 }}; 
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity:1;
+        min-height: 35px;
+        padding: 7px 0;
+        transition: opacity 2s;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .site-alert__text {
+      font-size: 15px !important;
+    }
+
+  /*
+    .img-popup {
+        width: 80% !important;
+        height: fit-content;
+    }
+  */
+
+    .popup__container {
+        width: 80%;
+      }
+
+    @media(min-width: 900px) {
+      .img-popup {
+          width: 800px !important;
+          height: fit-content;
+      }
+
+      .popup__container {
+        width: fit-content;
+      }
+    }
+
+  @media(max-width:900px) {
+    .site-alert { height:46px; display:flex; align-items:center; justify-content:center}
+    .site-alert-2 { height:46px }
+  }
+    
+{%- endstyle -%}
+
+<div data-section-type="announcement" data-section-id="{{ section.id }}">
+	{%- if section.settings.show_announcement -%}
+		<div class="site-alert container-wrap u-center" data-status="{{ section.settings.show_announcement }}" data-status-mobile="{{ section.settings.show_announcement_on_mobile }}" data-scroll-lock-fill-gap data-site-alert>
+			<div class="container">
+				<div class="site-alert__text site-alert__text--error">
+					<p>{{- 'general.ie11_support_message' | t -}}</p>
+				</div>
+				<div class="site-alert__text">
+
+					{%- if link != blank -%}
+						<a href="{{ link }}" tabindex="0">
+							{{- text -}}
+						</a>
+					{%- else -%}
+						{{- text -}}
+					{%- endif -%}
+
+				</div>
+			</div>
+		</div>
+
+        {% if section.settings.text_2 != '' %}
+            <div class="site-alert-2 container-wrap u-center" data-status="{{ section.settings.show_announcement }}" data-status-mobile="{{ section.settings.show_announcement_on_mobile }}" data-scroll-lock-fill-gap data-site-alert>
+                <div class="container">
+                    <div class="site-alert__text site-alert__text--error">
+                        <p>{{- 'general.ie11_support_message' | t -}}</p>
+                    </div>
+                    <div class="site-alert__text">
+                        {%- if link != blank -%}
+                            {{- section.settings.text_2 -}}
+                        {%- else -%}
+                            {{- section.settings.text_2 -}}
+                        {%- endif -%}
+
+                    </div>
+                </div>
+            </div>
+        {% endif %} 
+	{%- endif -%}
+</div>
+
+{% if section.settings.turn_on_popup %}
+<div style="position: fixed; bottom: 0; right: 0; width:100%; height: 100%; background:rgba(255,255,255, 0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; cursor:pointer; display: none;" class="popup-close">
+  <div class="popup__container" style="position:relative">  
+    <picture style="display:flex; align-items:center; justify-content:center">
+        <source media="(min-width:700px)" srcset="https://cdn.shopify.com/s/files/1/0312/7515/5588/files/Frame_2.jpg?v=1670862281" style="display: flex; align-items: center; justify-content: center;">
+        <img class="img-popup" src="https://cdn.shopify.com/s/files/1/0312/7515/5588/files/Frame_4.jpg?v=1670862281" alt="announcement popup" style="width:auto;">
+    </picture>
+    <img style="position:absolute; top:5px; right:5px; width:20px" src="https://cdn.shopify.com/s/files/1/0595/4348/6648/files/imageedit_4_9011179620.png?v=1670904745" alt="close popup" >
+  </div>
+</div>
+
+
+<script>
+    const announcementBar = document.querySelector('.site-alert-2')
+    const popupCloseBtn = document.querySelector('.popup-close');
+    let counter = 0;
+    (function startTimer()
+    { 
+
+        setInterval(function(){
+            counter++;
+            if(counter % 2) {
+                announcementBar.style.opacity = 0;
+                announcementBar.style.index = 800;
+                announcementBar.style.pointerEvents = 'none';
+            } else {
+                announcementBar.style.opacity = 1;
+                announcementBar.style.index = 1000;
+                announcementBar.style.pointerEvents = 'auto';
+            }
+        }, 4000)
+
+    })();
+
+    announcementBar.addEventListener('click', function(){
+        popupCloseBtn.style.display = 'flex';
+    })
+
+    popupCloseBtn.addEventListener('click', function(e){
+        popupCloseBtn.style.display = 'none'
+    })
+</script>
+{% else %}
+  <script>
+    const announcementBar = document.querySelector('.site-alert-2')
+    let counter = 0;
+    (function startTimer()
+    { 
+
+        setInterval(function(){
+            counter++;
+            if(counter % 2) {
+                announcementBar.style.opacity = 0;
+                announcementBar.style.index = 800;
+                announcementBar.style.pointerEvents = 'none';
+            } else {
+                announcementBar.style.opacity = 1;
+                announcementBar.style.index = 1000;
+                announcementBar.style.pointerEvents = 'auto';
+            }
+        }, 4000)
+
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+	"name": "Announcement",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Announcement bar"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_announcement",
+			"label": "Show announcement",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_announcement_on_mobile",
+			"label": "Show on mobile",
+			"default": true
+		},
+		{
+			"type": "richtext",
+			"id": "text",
+			"label": "First Announcement Text",
+			"default": "<p>Christmas Sale | 30% off Sitewide | Discount applied at checkout</p>"
+		},
+        {
+			"type": "richtext",
+			"id": "text_2",
+			"label": "Second Announcement Text",
+			"default": "<p>Get it before Christmas: Holiday Shipping Schedule</p>"
+		},
+		{
+			"type": "url",
+			"id": "link",
+			"label": "Link"
+		},
+		{
+			"type": "header",
+			"content": "Colors"
+		},
+		{
+			"type": "color",
+			"id": "color_bg",
+			"label": "First Announcement Background",
+			"default": "#273A3B"
+		},
+		{
+			"type": "color",
+			"id": "color_text",
+			"label": "First Announcement Color",
+			"default": "#ffffff"
+		},
+        {
+			"type": "color",
+			"id": "color_bg_2",
+			"label": "Second Announcement Background",
+			"default": "#273A3B"
+		},
+		{
+			"type": "color",
+			"id": "color_text_2",
+			"label": "Second Announcement Color",
+			"default": "#ffffff"
+		},
+        {
+			"type": "checkbox",
+			"id": "turn_on_popup",
+			"label": "Turn On Popup",
+			"default": false
+		},
+        {
+            "type": "image_picker",
+            "id": "desktop_popup_image",
+            "label": "Popup Desktop Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_popup_image",
+            "label": "Popup Mobile Image"
+        }
+	]
+}
+{% endschema %}
