@@ -58,10 +58,11 @@
 
 {%- style -%}
 .homepage_banner_title{
-   font-size: 31px;
+   font-size: calc(2rem * var(---font-adjust-heading));;
    margin-left: 10px;
-   font-weight: 600;
-   letter-spacing: 2px;
+   font-weight: 400;
+   letter-spacing: 0.03em;
+   color: #000000 !important; 
 }
 .about-us-divider {
     margin-top: -123px;
@@ -1097,8 +1098,9 @@ a.button.button--primary {
           {%- endif -%}
 
           {%- if title != blank -%}
-            <h2 class="homepage_banner_title" style="color:{{ title_color }}" id="shopify-section-template--{{ section.id }}__image-with-text" {% if transition_text %} data-aos="fade-up1" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
-              {{- title -}}
+            <h2 class="homepage_banner_title"  id="shopify-section-template--{{ section.id }}__image-with-text" {% if transition_text %} data-aos="fade-up1" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+              <!--Valentine's Day Gift Guide-->
+              {{title}}
             </h2>
             {%- assign animation_delay = animation_delay | plus: 250 -%}
           {%- endif -%}
@@ -1284,7 +1286,7 @@ a.button.button--primary {
       "type": "color",
       "id": "title_color",
       "label": "Text Color",
-      "default": "#ffffff"
+      "default": "#000000"
     },    
     {
       "type": "richtext",

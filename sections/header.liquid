@@ -308,7 +308,7 @@
              
             {%- endif -%}
 
-            <a id="cartTotal" href="{{ routes.cart_url }}" class="nav-item cartToggle{% if settings.cart_icon == 'circle' %} cartToggle--circle{% endif %}{% if cart.item_count == 0 %} cartToggle--empty{% endif %}" data-cart-toggle aria-expanded="false" aria-label="{{ 'general.accessibility.cart' | t }}">
+            <a id="cartTotal" href="{{ routes.cart_url }}" class="nav-item cartToggle{% if settings.cart_icon == 'circle' %} cartToggle--circle{% endif %}{% if cart.item_count == 0 %} cartToggle--empty{% endif %}"  aria-expanded="false" aria-label="{{ 'general.accessibility.cart' | t }}" data-cart-toggle onclick="location.href='/cart'">
               {%- if settings.cart_icon == 'cart' -%}
                 {%- render 'icon-cart' -%}
               {%- else -%}
@@ -366,11 +366,13 @@
   </div>
 </nav>
 
+
 {%- if template != 'cart' and settings.enable_ajax_cart -%}
   <div class="cart-drawer">
     {%- render 'site-cart' -%}
   </div>
 {%- endif -%}
+
 
 <script type="application/ld+json">
 {
