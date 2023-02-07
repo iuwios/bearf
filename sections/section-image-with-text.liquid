@@ -64,6 +64,11 @@
    letter-spacing: 0.03em;
    color: #000000 !important; 
 }
+
+.gallery-wrap a {
+    color: {{title_color}} !important;
+    border-color: {{title_color}};
+}
 .about-us-divider {
     margin-top: -123px;
 }
@@ -368,7 +373,7 @@ a.button.button--primary {
         {%- for block in section.blocks -%}
           {%- assign image = block.settings.slide -%}
           {%- assign image_aspect_ratio = image.aspect_ratio | default: 1.66 -%}
-
+          
           <div class="slide-image{% unless image %} slide-image--placeholder{% endunless %}"
             data-slide="{{ block.id }}"
             data-slide-index="{{ forloop.index0 }}"
@@ -1098,7 +1103,7 @@ a.button.button--primary {
           {%- endif -%}
 
           {%- if title != blank -%}
-            <h2 class="homepage_banner_title"  id="shopify-section-template--{{ section.id }}__image-with-text" {% if transition_text %} data-aos="fade-up1" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %}>
+            <h2 class="homepage_banner_title"  id="shopify-section-template--{{ section.id }}__image-with-text" {% if transition_text %} data-aos="fade-up1" data-aos-delay="{{ animation_delay }}" data-aos-anchor="{{ animation_anchor }}"{% endif %} style="color: {{title_color}} !important">
               <!--Valentine's Day Gift Guide-->
               {{title}}
             </h2>
@@ -1349,6 +1354,11 @@ a.button.button--primary {
           "type": "image_picker",
           "id": "slide",
           "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_image",
+          "label": "Image mobile"
         }
       ]
     }
@@ -1369,3 +1379,9 @@ a.button.button--primary {
   ]
 }
 {% endschema %}
+
+<script>
+  if(document.querySelector('.gallery-content-inner1').children[1].children[2].children[0] != undefined || document.querySelector('.gallery-content-inner1').children[1].children[2].children[0] != null ) {
+    document.querySelector('.gallery-content-inner1').children[1].children[2].children[0].style.setProperty ("color", "#D29896", "important");
+  }
+</script>

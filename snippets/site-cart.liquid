@@ -161,7 +161,9 @@
 
         {%- if enable_cart_order_notes -%}
           <div class="order-notes">
+
             <label class="order-notes__label" for="order-notes">{{ 'cart.labels.add_a_note' | t }}</label>
+            
             <textarea id="order-notes" class="order-notes__content" name="note"></textarea>
           </div>
         {%- endif -%}
