@@ -1,0 +1,161 @@
+{% comment %} Settings {% endcomment %}
+{%- liquid
+  assign show_text_animations = settings.transition_text
+  assign dots_style = settings.dots_style
+  if dots_style == 'hidden' or section.blocks.size < 2
+    assign dots = false
+  else
+    assign dots = true
+  endif
+  assign show_nav_arrows = section.settings.show_nav_arrows
+  assign transition = section.settings.transition
+  assign hover = true
+  assign fade_mode = true
+  if transition == 'slide'
+    assign fade_mode = false
+  endif
+
+  assign autoplay = section.settings.autoplay
+  assign duration = section.settings.duration | times: 1000
+  unless autoplay
+    assign duration = false
+  endunless
+
+  assign dots_position = section.settings.dots_position
+  assign show_arrow_down = section.settings.show_arrow_down
+
+  assign video_desktop = section.settings.video_desktop
+  assign video_mobile = section.settings.video_mobile
+  assign banner_link = section.settings.link
+
+  
+
+  comment
+    Check if Image Height setting is selected
+  endcomment
+
+  assign original_height = false
+  if section.settings.slide_height == 'original-height'
+    assign original_height = true
+  endif
+
+  comment
+    Layout
+  endcomment
+
+  assign alignment = section.settings.alignment
+
+  comment
+    Capture slideshow class
+  endcomment
+-%}
+
+<style>
+.banner-video__container_a {
+  min-height: 0.17vw;
+  width: 100%;
+  display: block;
+}
+.banner-video-player {
+  margin-bottom: 40px;
+}
+.banner-video-player::-webkit-media-controls {
+  display: none;
+}
+
+@media(max-width:850) {
+  .banner-video__container {
+    
+  }
+
+  .banner-video-player {
+    margin-bottom: 20px;
+  }
+
+}
+</style>
+
+<a href={{ banner_link }} class="banner-video__container_a">
+  <video
+    width="100%"
+    height="fit-content"
+    class="banner-video-player"
+    autoplay="true;"
+    muted
+    playsinline
+    loop
+    style="position: relative !important">
+    <source data-src={{video_desktop}} type="video/mp4">
+    <source data-src={{video_mobile}} type="video/mp4">
+  </video>
+</div>
+
+<script>
+
+  is_desktop = true;
+
+  video_player = document.querySelector('.banner-video-player')
+
+  if (window.innerWidth > 850) {
+    is_desktop = true;
+    video_player.src = video_player.children[0].dataset.src
+  } else {
+    is_desktop = false;
+    video_player.src = video_player.children[1].dataset.src
+  }
+
+  window.addEventListener("resize", function(e) {
+
+    if (window.innerWidth < 850) {
+      if (is_desktop) {
+        is_desktop = false
+
+        video_player.src = video_player.children[1].dataset.src
+      }
+
+    } else {
+      if (!is_desktop) {
+        is_desktop = true
+
+        video_player.src = video_player.children[0].dataset.src
+      }
+    }
+  })
+</script>
+
+
+
+{% comment %} Schema {% endcomment %}
+{% schema %}
+  {
+    "name": "Banner Video",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Only For Video"
+      },
+      {
+        "type": "text",
+        "id": "video_desktop",
+        "label": "Video desktop"
+      },
+      {
+        "type": "text",
+        "id": "video_mobile",
+        "label": "Video mobile"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button link",
+        "default": "/collections/all"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner Video",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

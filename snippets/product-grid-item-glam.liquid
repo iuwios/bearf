@@ -22,11 +22,6 @@
   endunless
 -%}
 
-{% assign isShowSale = false %}
-{% if  product.title contains "Bracelet" or product.title contains "Ring" or product.title contains "Choker" or product.title contains "Necklace" or product.title contains "Pendant" or product.title contains "Earring" or product.title contains "Huggies" or product.title contains "Hoops" or product.title contains "Threaders" or product.title contains "Climbers" %}
-{% capture isShowSale %} true {% endcapture %}
-{% endif %}
-
 {%-	unless fallback -%}
   {%- liquid
     assign first_variant = product.selected_or_first_available_variant
@@ -82,7 +77,7 @@ assign badge ='Sale'
 
   {%- capture product_badge -%}
     {%- if product.object_type == 'product' -%}
-      {%- if badge != '' and show_sale_badge and isShowSale -%}
+      {%- if badge != '' and show_sale_badge -%}
         <span class="product-status-flag product-status-flag--custom product-status-flag--{{ settings.product_badge_style }}" data-badge>
           {{- badge -}}
         </span>
@@ -230,18 +225,8 @@ assign badge ='Sale'
                {% if on_sale or settings.is_compare  %}
                 {% if settings.product_discount %}
                   {% assign dc_rate = 1 | minus: settings.product_discount %}
-        {% if  product.title contains "Choker" or product.title contains "Necklace" or product.title contains "Pendant" or product.title contains "Earring" or product.title contains "Huggies" or product.title contains "Hoops" or product.title contains "Threaders" or product.title contains "Climbers" %}
-          {% capture dc_rate %}
-            0.8
-          {% endcapture %}
-          {{ first_variant.price | times: dc_rate | money }}
-          <strike style="text-decoration-color:#f94c43;">{{ product.price | money_without_currency }}</strike>
-        {% elsif product.title contains "Bracelet" or product.title contains "Ring" %}
-          {{ first_variant.price | times: dc_rate | money }}
-          <strike style="text-decoration-color:#f94c43;">{{ product.price | money_without_currency }}</strike>
-          {% else %}
-            {{ first_variant.price | money }}
-        {% endif %}
+                  {{ product.price | times: dc_rate | money }}
+                  <strike style="text-decoration-color:#f94c43;">{{ product.price | money_without_currency }}</strike>
                 {% else %}
                   {{ product.price | money }}
                   {{ product.compare_at_price | money_without_currency }}

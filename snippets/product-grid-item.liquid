@@ -22,11 +22,6 @@
   endunless
 -%}
 
-{% assign isShowSale = false %}
-{% if  product.title contains "Bracelet" or product.title contains "Ring" or product.title contains "Choker" or product.title contains "Necklace" or product.title contains "Pendant" or product.title contains "Earring" or product.title contains "Huggies" or product.title contains "Hoops" or product.title contains "Threaders" or product.title contains "Climbers" %}
-{% capture isShowSale %} true {% endcapture %}
-{% endif %}
-
 {%-	unless fallback -%}
   {%- liquid
     assign first_variant = product.selected_or_first_available_variant
@@ -49,21 +44,11 @@
     comment
       Product tags
     endcomment
-     
+
     assign product_tags = product.tags | join: ',' | append: ','
     assign preorder = false
     assign badge = ''
 
-
-
-     
-assign show_sale_badge = true  
-assign badge ='Sale'
-
-
-
-
-     
     if product_tags contains '_badge_'
       assign replace_symbol = ' '
 
@@ -82,7 +67,7 @@ assign badge ='Sale'
 
   {%- capture product_badge -%}
     {%- if product.object_type == 'product' -%}
-      {%- if badge != '' and show_sale_badge  and isShowSale -%}
+      {%- if badge != '' and show_sale_badge -%}
         <span class="product-status-flag product-status-flag--custom product-status-flag--{{ settings.product_badge_style }}" data-badge>
           {{- badge -}}
         </span>
@@ -126,7 +111,7 @@ assign badge ='Sale'
     {%- if product.object_type == 'product' and settings.show_quick_view -%}
       <div class="product-block__image-inner">
         <a href="{{ product.url | within: collection }}" class="quickView-button button" data-trigger-quickview="{{ product.handle }}" data-focus-element>{{ 'collections.grid.quick_view' | t }}</a>
-</div>
+      </div>
     {%- endif -%}
   {%- endcapture -%}
 
@@ -198,28 +183,9 @@ assign badge ='Sale'
             {%- if product.price_varies -%}
               {{ 'products.labels.price_from' | t }} {{ product.price_min | money }}
             {%- else -%}
-              {% if on_sale or settings.is_compare  %}
-                {% if settings.product_discount %}
-                  {% assign dc_rate = 1 | minus: settings.product_discount %}
-        {% if  product.title contains "Choker" or product.title contains "Necklace" or product.title contains "Pendant" or product.title contains "Earring" or product.title contains "Huggies" or product.title contains "Hoops" or product.title contains "Threaders" or product.title contains "Climbers" %}
-          {% capture dc_rate %}
-            0.8
-          {% endcapture %}
-          {{ first_variant.price | times: dc_rate | money }}
-          <strike style="text-decoration-color:#f94c43;">{{ product.price | money_without_currency }}</strike>
-        {% elsif product.title contains "Bracelet" or product.title contains "Ring" %}
-          {{ first_variant.price | times: dc_rate | money }}
-          <strike style="text-decoration-color:#f94c43;">{{ product.price | money_without_currency }}</strike>
-          {% else %}
-            {{ first_variant.price | money }}
-        {% endif %}
-                  
-                {% else %}
-                  {{ product.price | money }}
-                  {{ product.compare_at_price | money_without_currency }}
-                {% endif %}
-              {% else %}
-                {{ product.price | money }}
+              {{ product.price | money }}
+              {% if on_sale %}
+                <strike>{{ product.compare_at_price | money }}</strike>
               {% endif %}
             {%- endif -%}
 
@@ -297,9 +263,8 @@ assign badge ='Sale'
                 <div class="swatch__label">
                   <span class="swatch__color swatch__color--{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ value | handle | append: '.' | append: file_extension | asset_url }})"></span>
                 </div>
-                <a href="#" class="swatch__link">{{ value }}  {% render 'banana-stand-product-list-container', product: product %}
-</a>
-</div>
+                <a href="#" class="swatch__link">{{ value }}</a>
+              </div>
             {%- endfor -%}
           </div>
         {%- endif -%}
