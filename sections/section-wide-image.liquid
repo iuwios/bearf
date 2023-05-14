@@ -1,0 +1,36 @@
+<div style="display:flex; align-items:center; justify-content:center; width: 100%; background: #F9CFC7" class="mg-71">
+  <picture style="width: 100%; ">
+    <source media="(max-width:750px)" srcset="{{ section.settings.image_mb| image_url }}"">
+    <img src="{{ section.settings.image_dsk| image_url }}" alt="All Product" style="width:auto;">
+  </picture>
+</div>
+
+{% schema %}
+  {
+    "name": "Section Image",
+    "class": "section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_dsk",
+        "label": "Image desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mb",
+        "label": "Image mobile"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Section Image"
+      }
+    ]
+  } 
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

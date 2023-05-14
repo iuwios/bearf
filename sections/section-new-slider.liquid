@@ -1,0 +1,1572 @@
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.min.js"></script>
+
+
+
+
+<style>
+.main {
+  max-width: 1500px;
+  min-width: 1256px;
+  display:block;
+  margin:0 auto;
+  border: 0.1px solid white;
+  padding-left: 96px;
+  padding-right: 65px;
+
+}
+
+.
+h3 {
+    background: #fff;
+    color: #3498db;
+    font-size: 36px;
+    line-height: 100px;
+    margin: 10px;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+}
+.action{
+  display:block;
+  margin:100px auto;
+  width:100%;
+  text-align:center;
+}
+.action a {
+  display:inline-block;
+  padding:5px 10px; 
+  background:#f30;
+  color:#fff;
+  text-decoration:none;
+}
+.action a:hover{
+  background:#000;
+}
+
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
+
+
+#shopify-block-709d48e7-ae01-4ed3-9049-a1542fb15861 {
+  max-width: 100% !important;
+}
+
+
+
+/* bts */
+.slick-slider:first-child {
+    margin-bottom: 50px;
+}
+
+.slick-slide {
+  margin-right: 31px;
+  border: 0.1px solid white;
+}
+
+
+
+.slick-slider {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+
+    position: unset !important;
+}
+.slick-list, .slick-slider, .slick-track {
+    display: block;
+}
+
+
+.slick-slider .slick-list, .slick-slider .slick-track {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0);
+    -o-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.slick-list {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.slick-track {
+    top: 0;
+    left: 0;
+}
+
+.slick-track:after, .slick-track:before {
+    display: table;
+    content: '';
+}
+
+.slick-initialized .slick-slide {
+    display: block;
+}
+.slick-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+.slick-track:after {
+    clear: both;
+}
+
+.b-image__wrapper {
+  opacity: 1;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.product-main__image {
+  position: relative;;
+  opacity: 1;
+  z-index: 2;
+}
+
+.hover-cont {
+  z-index: 1;
+  opacity: 1;
+  position: relative;
+  overflow-y: hidden;
+
+}
+.hover-cont:hover .hover-image {
+  opacity: 0;
+}
+
+.hover-cont:hover .b-image__wrapper {
+  opacity: 1;
+}
+
+.slick-dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX( -50% );
+  display: flex;
+  padding-top: 20px;
+  bottom: -0 !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.slick-dots li {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: 0;
+  background: 0 0;
+}
+
+.slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: #C0BFBF;;
+}
+.slick-dots li button:before {
+    font-size: 30px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    content: '•';
+    text-align: center;
+    color: #D9D9D9;
+}
+
+.slick-arrow {
+  display: none !important;
+}
+
+
+.main-header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1485px;
+  width: 100%;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+.jdgm-carousel-wrapper {
+  padding: 80px 96px !important;
+  width: 100% !important;
+  background: #8AB0B4;
+}
+
+.choose_wrapper-mb {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.choose_wrapper-mb::-webkit-scrollbar {
+  display: none;
+}
+
+.choose_container::-webkit-scrollbar {
+  display: none;
+}
+.choose_container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.choose_wrapper-mb {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.choose_wrapper::-webkit-scrollbar {
+  display: none;
+}
+.choose_wrapper {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+#insta-feed h2 {
+  font-family: 'Quincy CF';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 40px !important;
+  line-height: 44px;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  color: #000000;
+  padding-left: 96px;
+  padding-right: 96px;
+  max-width: 1485px !important;
+  text-align: left;
+}
+
+
+
+.main-header_text {
+  font-family: 'Quincy CF';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  color: #000000;
+}
+
+.jdgm-carousel-title {
+  font-family: 'Quincy CF';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  color: white;
+}
+
+.jdgm-carousel-number-of-reviews {
+  display: none !important;
+}
+
+.shopify-app-block {
+  margin-bottom: 0 !important;
+  max-width: 1485px !important; 
+}
+
+#shopify-block-4054b52a-5a4c-462c-a7df-5cdb13444c87 {
+  background: #8AB0B4 !important;
+}
+
+#shopify-block-4054b52a-5a4c-462c-a7df-5cdb13444c87 > div {
+  max-width: 100% !important;
+}
+
+.choose_wrapper {
+  display: flex;
+
+}
+
+.choose_text {
+  margin-right: 47px;
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  /* or 260% */
+
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #000000;
+  cursor: pointer;
+}
+
+.choose_text-2 {
+  margin-left: 45px;
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  /* or 260% */
+
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #000000;
+  cursor: pointer;
+}
+
+.choose_text:hover {
+  border-bottom: 1px solid black !important;
+}
+
+
+.choose_text-2:hover {
+  text-decoration: underline;
+}
+
+.choose_text-2:first-child {
+  text-decoration: underline;
+}
+
+.choose_text:first-child {
+  border-bottom: 1px solid black;
+}
+
+.choose_text:last-child {
+  margin-right: 0;
+}
+
+.choose-section {
+  visibility: hidden;
+  height: 0 ;
+}
+
+.choose-section:first-child {
+  visibility: visible;
+  height: 100% ;
+}
+
+
+.jdgm-carousel-item__inner-wrapper {
+  background: white !important;
+}
+
+.jdgm-all-reviews-rating-wrapper {
+  display: none !important;
+}
+
+
+.mg-53-26 {
+  margin-top: 112px;
+  margin-bottom: 23px;
+}
+
+#insta-feed, .instafeed-shopify {
+  margin-top: 112px;
+}
+
+.mg-71 {
+  margin-bottom: 112px;
+}
+
+.mg-71-b {
+  margin-bottom: 112px;
+}
+
+#shopify-section-template--18757788172563__1681746439a7903c53 {
+  background: #8AB0B4 !important;
+}
+
+.slider-stick {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 60px;
+}
+
+.jdgm-carousel-title-and-link {
+  width: 100% !important;
+}
+
+
+@media(max-width:1254px) {
+  .main {
+    padding-left: 39px;
+  }
+
+  
+  .jdgm-carousel-wrapper {
+    padding-left: 39px !important;
+    padding-right: 39px !important;
+  }
+
+  #insta-feed h2 {
+    padding-left: 39px !important;
+    padding-right: 39px !important
+  } 
+
+
+  .main-header__container {
+
+    padding-left: 39px;
+    padding-right: 39px;
+  }
+    
+}
+
+@media(max-width:750px) {
+  .mb-collections {
+    padding-left: 0 !important;
+  }
+
+  .choose_container {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  .main-header__container {
+    flex-direction: column;
+  }
+
+  .hover-cont:hover .hover-image {
+    opacity: unset;
+  }
+
+  .hover-cont:hover .b-image__wrapper {
+    opacity: unset;
+  }
+
+  .fixedElement {
+    z-index: 20;
+    overflow-x: scroll;
+    width: 100%;
+    background: white;
+  }
+
+
+  .main {
+    max-width: 1500px;
+    min-width: 1256px;
+  }
+
+
+
+  .slick-track {
+    margin-left: 45px;
+  }
+  
+
+  .slick-slide {
+    
+  }
+
+  .gift-section .slick-track {
+    margin-left:0;
+  }
+  #insta-feed, .instafeed-shopify {
+    margin-top: 33px;
+  }
+  .jdgm-carousel-title, .jdgm-all-reviews-rating-wrapper {
+    text-align: center !important;
+  }
+
+  .jdgm-carousel-title {
+    justify-content: center;
+    text-align: center !important;
+  }
+
+  .jdgm-carousel-wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  #insta-feed h2 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
+  } 
+
+  .jdgm-carousel-title-and-link > .jdgm-carousel-title {
+    text-align: center !important;
+  }
+
+  .mg-71-b {
+    margin-bottom: 70px;
+  }
+
+
+
+  .shopify-app-block {
+    margin: 0 !important;
+    margin-top: 70px !important;
+    margin-bottom: 70px !important;
+  }
+  .mg-71 {
+    margin-bottom: 94px;
+  }
+  .mg-53-26 {
+    margin-top: 70px;
+    margin-bottom: 19px;
+  }
+
+  .mg-71-m {
+    margin-bottom: 71px;
+  }
+
+  .mg-50-m {
+    margin-bottom: 50px;
+  }
+
+  .mg-53-45-m {
+    margin-top: 53px;
+    margin-bottom: 45px;
+  }
+
+  .main-header__container {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .main-header_text {
+    font-size: 37px;
+    line-height: 40px;
+  }
+
+  #insta-feed h2 {
+    font-size: 37px !important;
+    line-height: 40px;
+  }
+
+  .jdgm-carousel-title {
+    font-size: 37px;
+    line-height: 40px;
+  }
+
+  .choose_text { 
+    font-size: 15px;
+    line-height: 39px;
+  }
+
+  .choose_text-2 {
+    font-size: 15px;
+    line-height: 39px;
+  }
+
+  .choose_wrapper{
+    margin-top: 8px;
+    margin-left: 47px;
+  }
+  
+
+  .main {
+    padding: 0 45px;
+  }
+
+  .main-2 {
+    padding: 0 !important;
+    width: 400vw !important;
+    max-width: unset !important;
+    min-width: unset !important;
+  }
+
+  .main-2 .slick-slide {
+    margin-right: 0 !important;
+
+  }
+
+  .gift-header_text {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 38px;
+    /* identical to box height, or 190% */
+    
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    
+    color: #000000;
+
+    margin-top: 10px;
+  }
+
+  .gift-body_text {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 0.03em;
+    
+    color: #000000;
+    margin-top: 2px;
+  }
+
+
+
+  .abs-pos {
+    margin-top: -27.8vw;
+  }
+
+  .mb-height {
+    height: calc(100%);
+  }
+
+  .only-desktop {
+    display: none !important;
+  }
+  
+}
+@media(min-width:750px) {
+  
+  .only-mobile {
+    display: none !important;
+  }
+
+  .header--full+.shopify-section {
+    margin: 0 !important;
+  }
+
+
+  
+}
+
+
+.txt-color_white {
+  color: white !important;
+}
+
+.border-color_white {
+  border-color: white !important;
+}
+
+
+</style>
+
+
+
+<div style="width:100%; position:relative; mb-height" class="mg-50-m">
+
+
+<div style="display:flex; align-items:center; justify-content:center; width: 100%" class="only-desktop">
+    <div style="display:flex;  width: 100%; position:relative">
+      <div style="width:50%; position:relative" >
+        <div class="slider-stick">
+          <picture style="width: 100%; position:relative"  >
+            <source media="(min-width:750px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-22_1_1_-min.jpg?v=1680499317" > 
+              <img src="" alt="All Product" style="width:auto;" >
+          </picture>
+      
+          <div style="display:flex; align-items:center;justify-content:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); flex-direction:column">
+            <div class="main-header_text txt-color_white" style="margin-bottom:26px">Best Sellers</div>
+            <a href="/collections/best-sellers" class="landing-shop__btn swap_shop  border-color_white"><div class="txt-color_white">Shop All</div></a>
+          </div>
+        </div>
+      </div>
+        
+
+      <div style="width: 50%; padding:39px; display:flex; align-items:center; justify-content:center">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(40%, auto)); width: 646px; grid-column-gap:40px">
+          {% for product in collections['best-sellers'].products limit:12 %}
+            <a href="{{product.url}}"  class="card__wrapper">
+              <div>
+                <div class="hover-cont">
+                  <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+                  {% if product.images[1].src != blank %}
+                    <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+                  {% endif %}
+                </div>
+              </div>
+              
+              <div class="product-block__info product-block__info--center">
+                <div class="product-block__top">
+                  <h3 class="product-block__title">{{product.title}}</h3>
+                </div>
+                <div class="product-block__price">
+                  <p class="price">{{product.price | money_with_currency}}</p>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+  
+  
+<picture class="only-mobile " onclick="location.href='/collections/best-sellers'">
+  <source media="(max-width:750px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_202-min.jpg?v=1680507261" >
+  <img src="" alt="All Product" style="width:auto;">
+</picture>
+
+  <div style="overflow-x: hidden;" class="only-mobile abs-pos">
+    <div class="main mb-collections">
+      <div class="slider slider-nav slider-nav-2">
+        {% for product in collections['best-sellers'].products limit:8 %}
+          <a href="{{product.url}}"  class="card__wrapper">
+            <div>
+              <div class="hover-cont">
+                <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+                {% if product.images[1].src != blank %}
+                  <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="product-block__info product-block__info--center">
+              <div class="product-block__top">
+                <h3 class="product-block__title">{{product.title}}</h3>
+              </div>
+              <div class="product-block__price">
+                <p class="price">{{product.price | money_with_currency}}</p>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div style="width:100%; position:relative; mb-height" class="mg-71-b">
+  
+  <div style="display:flex; align-items:center; justify-content:center; width: 100%" class="only-desktop">
+    <div style="display:flex; flex-direction:row-reverse; width: 100%">
+      <div style="width:50%; position:relative" >
+        <div class="slider-stick">
+          <picture style="width: 100%; position:relative"  >
+            <source media="(min-width:750px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-26_1-min.jpg?v=1680499317" > 
+              <img src="" alt="All Product" style="width:auto;" >
+          </picture>
+      
+          <div style="display:flex; align-items:center;justify-content:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); flex-direction:column">
+            <div class="main-header_text txt-color_white" style="margin-bottom:26px">New Arrivals</div>
+            <a href="/collections/newarrivals" class="landing-shop__btn swap_shop  border-color_white"><div class="txt-color_white">Shop All</div></a>
+          </div>
+        </div>
+      </div>
+    
+
+      <div style="width: 50%; padding:39px; display:flex; align-items:center; justify-content:center">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(40%, auto)); width: 646px; grid-column-gap:40px">
+          {% for product in collections['newarrivals'].products limit:12 %}
+            <a href="{{product.url}}"  class="card__wrapper">
+              <div>
+                <div class="hover-cont">
+                  <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+                  {% if product.images[1].src != blank %}
+                    <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+                  {% endif %}
+                </div>
+              </div>
+              
+              <div class="product-block__info product-block__info--center">
+                <div class="product-block__top">
+                  <h3 class="product-block__title">{{product.title}}</h3>
+                </div>
+                <div class="product-block__price">
+                  <p class="price">{{product.price | money_with_currency}}</p>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <picture class="only-mobile" onclick="location.href='/collections/newarrivals'">
+    <source media="(max-width:750px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_174-min.jpg?v=1679989417" >
+    <img src="" alt="All Product" style="width:auto;">
+  </picture>
+
+  <div style="overflow-x: hidden; " class="only-mobile abs-pos">
+    <div class="main mb-collections">
+      <div class="slider slider-nav slider-nav-3">
+        {% for product in collections['newarrivals'].products limit:8 %}
+          <a href="{{product.url}}"  class="card__wrapper">
+            <div>
+              <div class="hover-cont">
+                <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+                {% if product.images[1].src != blank %}
+                  <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+                {% endif %}
+              </div>
+            </div>
+            
+            <div class="product-block__info product-block__info--center">
+              <div class="product-block__top">
+                <h3 class="product-block__title">{{product.title}}</h3>
+              </div>
+              <div class="product-block__price">
+                <p class="price">{{product.price | money_with_currency}}</p>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div style="display:flex; align-items:center; justify-content:center; width: 100%; background: #8AB0B4" class="mg-71-m">
+  <picture style="width: 100%; ">
+    <source media="(max-width:750px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_179-min.jpg?v=1679994538">
+    <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_178-min.jpg?v=1679994538" alt="All Product" style="width:auto;">
+  </picture>
+</div>
+
+
+
+<div style="width:100%; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; margin-top:112px" class=" calc-cont only-desktop">
+  <div class="main-header__container"> 
+    <div class="main-header_text">Gifts Guide</div>
+  </div>
+</div>
+
+
+<div id="how-it-works" class="only-desktop">
+
+    <div class="stage">
+
+      <div class="customerAnimText">
+        <div class="customerText">
+          <div id="customerTextA" class="pin-flex"  style="transform: translate(0px, -20px); opacity: 0; height:0">
+            <div class="image1 customerAnimImage">
+              <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-02_1-min.jpg?v=1680005572">
+            </div>
+            <div class="gift-text__container">
+              <h2>Gifts under $60</h2>
+              <div class="pin-content__text">Budget-friendly gift choices</div>
+              <a href="/collections/gifts-under-60" class="landing-shop__btn"><div>Shop All</div></a>
+            </div>
+            
+          </div>
+          <div id="customerTextB" class="pin-flex"  style="transform: translate(0px, -20px); opacity: 0; height:0">
+            <div class="image1 customerAnimImage" >
+              <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-06_1-min.jpg?v=1680005573">
+            </div>
+            <div class="gift-text__container">
+              <h2>Gifts under $100</h2>
+              <div class="pin-content__text">Budget-friendly gift choices</div>
+              <a href="/collections/gifts-under-100" class="landing-shop__btn"><div>Shop All</div></a>
+            </div>
+          </div>
+          <div id="customerTextC" class="pin-flex" style="transform: translate(0px, -20px); opacity: 0; height:0">
+            <div class="image1 customerAnimImage" >
+              <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-15_1-min.jpg?v=1680005572">
+            </div>
+            <div class="gift-text__container">
+              <h2>Personalised gifts</h2>
+              <div class="pin-content__text">Meaningful gift for them</div>
+              <a href="/collections/personalized" class="landing-shop__btn"><div>Shop All</div></a>
+            </div>
+          </div>
+
+          <!--
+          <div id="customerTextD" class="pin-flex" style="transform: translate(0px, -20px); opacity: 0; height:0" >
+            <div class="image1 customerAnimImage">
+              <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-14_1-min.jpg?v=1680005572">
+            </div>
+            <div class="gift-text__container">
+              <h2>bundle gifts</h2>
+              <div class="pin-content__text">Perfect gift combination</div>
+              <a href="/pages/giftguide" class="landing-shop__btn"><div>Shop All</div></a>
+            </div>
+          </div>
+          -->
+
+
+        </div>
+
+        <div class="customerAnimPoint">
+          <svg id="pointer1" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" fill-opacity="0.5"/>
+          </svg>
+          <svg id="pointer2" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" fill-opacity="0.5"/>
+          </svg>
+          <svg id="pointer3" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" fill-opacity="0.5"/>
+          </svg>
+
+          <!--
+          <svg id="pointer4"width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" fill-opacity="0.5"/>
+          </svg>
+          -->
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+<div style="width:100%; overflow:hidden; position:relative;" class="mb-height only-mobile gift-section">
+  <div style="width:100%; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center"  >
+  <div class="main-header__container" > 
+      <div class="main-header_text" style="text-align; width:100%; padding-left:45px; margin-bottom:27px">Gift Guide</div>
+    </div>
+  </div>
+
+  <div class="main ">
+    <div class="slider slider-nav slider-nav-4">
+
+        <a href="/collections/gifts-under-60"  class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-02_1-min_297c59c1-1a7a-4536-9eac-bce36db5a2c4.jpg?v=1680019525">
+            </div>
+          </div>
+          
+          <div style="display:flex; align-items:center; justify-content:center; flex-direction:column">
+            <div class="gift-header_text">Gifts under $60</div>
+            <div class="gift-body_text">Budget-friendly gift choices</div>
+          </div>
+        </a>
+
+        <a href="/collections/gifts-under-100"  class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-06_1-min_29cfca33-5b04-4be5-ab0c-4a1a3bace83e.jpg?v=1680019525">
+            </div>
+          </div>
+          
+          <div style="display:flex; align-items:center; justify-content:center; flex-direction:column">
+            <div class="gift-header_text">Gifts under $100</div>
+            <div class="gift-body_text">Budget-friendly gift choices</div>
+          </div>
+        </a>
+
+        <a href="/collections/personalized"  class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-15_1-min_00efcebf-4f8a-44ad-a99c-8b841fe148d2.jpg?v=1680019525">
+            </div>
+          </div>
+          
+          <div style="display:flex; align-items:center; justify-content:center; flex-direction:column">
+            <div class="gift-header_text">Personalised gifts</div>
+            <div class="gift-body_text">Meaningful gift for them</div>
+          </div>
+        </a>
+
+       <!--
+        <a href="/collections/gifts-under-60"  class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-02_1-min_297c59c1-1a7a-4536-9eac-bce36db5a2c4.jpg?v=1680019525">
+            </div>
+          </div>
+          
+          <div style="display:flex; align-items:center; justify-content:center; flex-direction:column">
+            <div class="gift-header_text">Gifts under $60</div>
+            <div class="gift-body_text">Budget-friendly gift choices</div>
+          </div>
+        </a>
+
+        <a href="/collections/gifts-under-100"  class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-06_1-min_29cfca33-5b04-4be5-ab0c-4a1a3bace83e.jpg?v=1680019525">
+            </div>
+          </div>
+          
+          <div style="display:flex; align-items:center; justify-content:center; flex-direction:column">
+            <div class="gift-header_text">Gifts under $100</div>
+            <div class="gift-body_text">Budget-friendly gift choices</div>
+          </div>
+        </a>
+-->
+
+ <!--
+        
+        <a href="/pages/giftguide"  class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-14_1-min_42969a69-768d-491e-93c6-1ad415bf6695.jpg?v=1680019525">
+            </div>
+          </div>
+          
+          <div style="display:flex; align-items:center; justify-content:center; flex-direction:column">
+            <div class="gift-header_text">bundle gifts</div>
+            <div class="gift-body_text">Perfect gift combination</div>
+          </div>
+        </a>
+
+
+        <a href="/pages/giftguide"  class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Bearfruit_-_February_23-14_1-min_42969a69-768d-491e-93c6-1ad415bf6695.jpg?v=1680019525">
+            </div>
+          </div>
+          
+          <div style="display:flex; align-items:center; justify-content:center; flex-direction:column">
+            <div class="gift-header_text">bundle gifts</div>
+            <div class="gift-body_text">Perfect gift combination</div>
+          </div>
+        </a>
+        -->
+
+    </div>
+  </div>
+</div>
+
+
+<div style="width:100%; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; margin-bottom: 70px; margin-top:24px" class="only-mobile">
+  <a href="/pages/giftguide" class="landing-shop__btn swap_shop"><div>Shop All</div></a>
+</div>
+
+
+
+
+
+
+
+<style>
+  #how-it-works {
+    border: 0.1px solid white;
+  }
+  .scrollmagic-pin-spacer {
+    margin: 0 auto !important;
+  }
+  .stage-wrapper {
+    position: relative;
+    top: 300px;
+    
+  }
+  .stage {
+    width: 100%;
+    inset: 0 0 0 0 !important;
+    height: 100vh !important;
+    /*margin: 200px auto 0;*/
+    /*position: relative !important;*/
+    z-index: 1;
+    display: flex;
+    /*left: 50% !important;
+    transform: translateX(-50%);*/
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .customerAnimText {
+    width: 100%;
+    color: #FFF;
+    position: relative;
+    left: 0;
+    top: 0;
+    float: left;
+    font-family: 'Helvetica', sans-serif;
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px !important;
+  }
+
+  #customerTextA {
+    opacity: 1;
+  }
+  #customerTextB {
+    opacity: 0;
+  }
+  #customerTextC {
+    opacity: 0;
+  }
+  #customerTextD {
+    opacity: 0;
+  }
+  
+ 
+.foundit {
+  -webkit-animation: foundit 2s forwards !important;
+  animation: foundit 2s forwards !important;
+  -moz-animation: foundit 2s forwards !important;
+  -o-animation: foundit 2s forwards !important;
+  height: 100% !important;
+}
+
+.foundit-2 {
+  -webkit-animation: foundit 2s forwards !important;
+  animation: foundit 2s forwards !important;
+  -moz-animation: foundit 2s forwards !important;
+  -o-animation: foundit 2s forwards !important;
+}
+
+.foundit-3 {
+  height: 100% !important;
+  visibility: visible !important;
+}
+
+.customerAnimText,
+.customerAnimImage {
+  -webkit-animation: 2s;
+  animation: 2s;
+  -moz-animation: 2s;
+  -o-animation: 2s;
+}
+
+.image1 {
+  width: 53%;
+}
+
+@-webkit-keyframes foundit {
+  0% {
+    transform: translate(0px, -20px);
+    opacity: 0;
+  } 
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes foundit{
+  0% {
+    transform: translate(0px, -20px);
+    opacity: 0;
+  } 
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes foundit {
+  0% {
+    transform: translate(0px, -20px);
+    opacity: 0;
+  } 
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+@-o-keyframes foundit {
+  0% {
+    transform: translate(0px, -20px);
+    opacity: 0;
+  } 
+
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+.current-point {
+  fill: #C0BFBF !important;
+}
+
+
+
+.customerAnimPoint {
+  width: 5%;
+  max-width: 50%;
+  color: #FFF;
+  /*
+  position: absolute;
+  right: 0;
+  top: 0;
+  float: right;
+  */
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  padding-right:40px
+}
+
+.customerText {
+  width: 95%;
+}
+
+.customerAnimPoint svg {
+  fill: rgba(213, 212, 212, 0.5);
+  width: 10px;
+  height: 10px;
+  margin-bottom: 10px;
+}
+
+.customerAnimPoint svg:last-child {
+  margin-bottom: 0;
+}
+
+.pin-flex {
+  display: flex;
+} 
+
+.landing-shop__btn {
+  padding: 16px 70px;
+  border: 1px solid #000000;
+}
+
+.landing-shop__btn div {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000000;
+}
+
+.gift-text__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 47%;
+}
+
+.gift-text__container h2 {
+  margin: unset;
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 44px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  color: #000000;
+}
+
+.pin-content__text {
+  margin: unset;
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22.1446px;
+  line-height: 25px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: #000000;
+
+  margin-top: 9px;
+  margin-bottom: 26px;
+} 
+
+.relative-pos  {
+  position: relative !important;
+}
+
+.pin-ver-2 a{
+ width: 237px !important;
+}
+
+
+.header--full+.shopify-section {
+  margin-top: 0 !important;
+}
+@media(max-width: 750px) {
+
+  .main {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-left: 0 !important;
+    min-width: unset !important;
+    width: 100% !important;
+    border-top: unset !important
+  }
+
+  .slider-nav-4 {
+    width: 1123px !important;
+    margin-bottom: 30px
+  }
+  .slider-nav {
+    display:flex;
+    width: 2000px;
+    gap: 30px;
+    padding-left: 39px;
+    border-top: unset !important
+  }
+  .pin-ver-2 a{
+  width: 237px !important;
+  }
+
+  .gift-section .slick-dots li:nth-child(3),
+  .gift-section .slick-dots li:nth-child(4){
+    display: none;
+  }
+
+  .gift-text__container h2 {
+    font-size: 20px;
+    line-height: 38px;
+  }
+
+  .pin-content__text {
+    font-size: 15px;
+    line-height: 17px;
+  } 
+
+  /*
+  .landing-shop__btn {
+    width: 122px;
+    height: 42px;
+  }
+  */
+
+  .w-max {
+    width: 100vw !important;
+  }
+
+  .landing-shop__btn div {
+    font-size: 15px;
+  }
+
+
+  .customerAnimPoint {
+    top: unset;
+    bottom: 0;
+    flex-direction: row;
+  }
+
+  .pin-flex {
+    flex-direction: column;
+  }
+
+  .customerAnimText {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    left: 0;
+  }
+
+  .customerAnimPoint svg {
+    margin-bottom: 0;
+    margin-right: 10px
+  }
+
+  .customerAnimPoint svg:last-child {
+    margin-right: 0px
+  }
+
+  .stage{
+    min-height: 400px;
+  }
+}
+
+.vd-test {
+  width: 320px;
+  height: 320px;
+}
+
+.pointer {
+  position: absolute;
+  height: 50px; top:0px;
+  width: 50px; left:50%;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.video_container:hover .pointer {
+  opacity: 1;
+}
+
+.flx-al-center {
+  align-items: center !important;
+}
+</style>
+
+
+<script>
+
+let text_container = document.querySelectorAll('.choose_text');
+
+let text_container_2 = document.querySelectorAll('.choose_text-2');
+let image_container = document.querySelectorAll('.choose-section');
+let swap_btn = document.querySelector('.swap_shop')
+for(let i=0; i<text_container.length; i++) {
+  text_container[i].addEventListener('click', function(){
+
+    for(let j=0; j<text_container.length; j++) {
+      if(j == i) {
+        text_container[j].style.borderBottom = '1px solid black'
+        image_container[j].style.visibility = 'visible';
+        image_container[j].style.height = '100%';
+        image_container[j].style.marginBottom = '50px';
+        swap_btn.href = pick_collection(j);
+        text_container_2[j].style.textDecoration="underline"
+      } else {
+        text_container[j].style.borderBottom = '0'
+        image_container[j].style.visibility = 'hidden'
+        image_container[j].style.height = '0';
+        image_container[j].style.marginBottom = '0';
+        text_container_2[j].style.textDecoration="unset"
+      }
+    }
+  })
+}
+
+
+function pick_collection(num){
+    switch(num){
+      case 0:
+        return '/collections/necklaces'
+      case 1:
+        return '/collections/earrings'
+      case 2:
+        return '/collections/rings'
+      case 3:
+        return '/collections/bracelets'
+    }
+
+}
+/*text_container[0].click()*/
+
+
+
+if(window.innerWidth > 750) {
+
+  $('.slider-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    /*asNavFor: '.slider-for',*/
+    dots: true,
+    focusOnSelect: true
+  });
+  $('a[data-slide]').click(function(e) {
+    e.preventDefault();
+    let slideno = $(this).data('slide');
+    $('.slider-nav').slick('slickGoTo', slideno - 1);
+  });
+
+  
+var $stage = $('.stage'),
+  $textA = $('#customerTextA'),
+  $textB = $('#customerTextB'),
+  $textC = $('#customerTextC'),
+  $textD = $('#customerTextD'),
+  $textE = $('#customerTextE'),
+  $pointerA = $('#pointer1'),
+  $pointerB = $('#pointer2'),
+  $pointerC = $('#pointer3'),
+  $pointerD = $('#pointer4'),
+  $pointer_padding = $('#how-it-works')
+  
+
+  // initialize controller
+  var controller = new ScrollMagic.Controller();
+  controller.scrollTo(0);
+
+  // build timeline with animation tweens
+  var scrollAnimation = new TimelineMax();
+  scrollAnimation.set($stage, {autoAlpha: 1})
+  .to($textA, 0, { css:{className:'+=foundit'} })
+  .to($pointerA, 0, { css:{className:'+=current-point'} })
+
+  .to($stage, 1, { css:{className:'+=flx-al-center'} })
+
+  .to($textA, 0, { css:{className:'-=foundit'}}, 1)
+  .to($textB, 0, { css:{className:'+=foundit'} }, 1)
+  .to($pointerB, 0, { css:{className:'+=current-point'}}, 1)
+  .to($pointerA, 0, { css:{className:'-=current-point'} }, 1)
+
+  .to($textB, 0, { css:{className:'-=foundit'}}, 2)
+  .to($textC, 0, { css:{className:'+=foundit'}}, 2)
+  .to($pointerC, 1, { css:{className:'+=current-point'} }, 2)
+  .to($pointerB, 1, { css:{className:'-=current-point'} }, 2)
+  //.to($pointer_padding, 1, { css:{className:'-=relative-pos'} }, 2)
+
+
+
+
+  // build scene and link scrolling to animation
+  var scene = new ScrollMagic.Scene({triggerElement: ".stage", duration: 2500})
+  .setPin(".stage")
+  .addTo(controller)
+  .setTween(scrollAnimation);
+  scene.offset(450);
+}
+
+  if(window.innerWidth < 750) {
+    $(window).scroll(function(e){ 
+      var $el = $('.fixedElement'); 
+      var isPositionFixed = ($el.css('position') == 'fixed');
+      if ($(this).scrollTop() > (document.querySelector('.shopify-section--slideshow').offsetHeight + document.querySelector('.calc-cont').offsetHeight + document.querySelector('.choose_wrapper-mb').offsetHeight) && !isPositionFixed + 80){ 
+        $el.css({'position': 'fixed', 'top': '60px','display':'flex'}); 
+      }
+      if ($(this).scrollTop() < (document.querySelector('.shopify-section--slideshow').offsetHeight + document.querySelector('.calc-cont').offsetHeight + document.querySelector('.choose_wrapper-mb').offsetHeight) && isPositionFixed + 80){
+        $el.css({'position': 'static', 'top': '60px','display':'none'}); 
+      } 
+    });
+  }
+
+
+</script>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Pin Scroll",
+    "class": "section",
+    "settings": [
+      
+    ],
+    "presets": [
+      {
+        "name": "Pin Scroll"
+      }
+    ]
+  } 
+  {% endschema %}

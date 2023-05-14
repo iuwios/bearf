@@ -11,13 +11,185 @@ div#shopify-section-footer_expanse {
     background: #8AB0B4;
 }
 
-  .site-footer a {
-    color: #F4F0E5 !important;
+.site-footer a {
+  color: white;
+}
+
+.footer-flex {
+  display: flex;
+  max-width: 1485px;
+  width: 100%;
+  padding: 0px 96px;
+}
+
+.site-footer .footer__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#NewsletterForm--footer_expanse {
+  width: 50%;
+  padding-right: 37px;
+}
+
+.footer__blocks {
+  width: 50%;
+  padding-left: 37px;
+}
+
+.sign-up-form {
+  width: 100%;
+}
+
+.sign-up-form .inputGroup {
+  height: 48px;
+}
+
+.sign-up-input {
+  max-width: unset;
+}
+
+.sign-up-submit {
+  width: 168px !important;
+  background: white !important
+}
+
+.sign-up-submit span {
+  color: #8ab0b4!important;
+  font-size: 15px;
+}
+
+.footer-list_txt {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 25px;
+  letter-spacing: 0.03em;
+  
+  color: #FFFFFF;
+  margin-bottom: 10px;
+} 
+
+.footer-subscribe_txt {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 30px;
+  letter-spacing: 0.03em;
+  color: #FFFFFF;
+  margin-bottom: 14px
+}
+
+.contact-form {
+  margin-top: 0;
+}
+
+.footer__title {
+  text-transform: uppercase;
+}
+
+  .footer__section--menus {
+    padding-top: 100px;
+    padding-bottom: 200px;
   }
+
+@media(max-width: 1254px) {
+  .footer-flex {
+    display: flex;
+    padding: 0px 39px;
+  }
+}
+
+@media(max-width: 753px) {
+  .footer__title {
+    text-align: left;
+    border-bottom: 1px solid white;
+    width: fit-content;
+    margin-bottom: 30px;
+  }
+
+  .footer__menu li {
+    text-align: left;
+  }
+
+  .site-footer ul {
+    text-align: left;
+  }
+
+  .footer__mobile-section {
+    padding-left: 0 !important;
+  }
+
+  .footer-flex {
+    flex-direction: column;
+  }
+  
+  .site-footer .footer__section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #NewsletterForm--footer_expanse {
+    width: 100%;
+    padding-right: unset;
+  }
+  
+  .footer__blocks {
+    width: 100%;
+    padding-left: unset;
+    margin-top: 49px;
+    gap: 0;
+    justify-content: baseline;
+  }
+  
+  .sign-up-form {
+    width: 100%;
+  }
+
+  .sign-up-submit {
+    width: 134px !important;
+    background: white !important
+  }
+
+  .contact-form input.sign-up-input {
+    font-size: 14px;
+  }
+  
+  .sign-up-form .inputGroup {
+    height: 48px;
+  }
+
+  .footer-list_txt {
+    font-size: 13px;
+    line-height: 23px;
+    border-bottom: 1px solid white;
+    width: fit-content;
+    margin-bottom: 4px;
+  } 
+
+  .footer-subscribe_txt {
+    font-size: 13px;
+    line-height: 23px;
+  }
+
+  .footer__block {
+    width: 50% !important;
+    flex: 50% !important;
+  }
+
+  .sign-up-form .inputGroup {
+    height: 38px;
+  }
+}
 </style>
 <footer class="site-footer" data-section-id="{{ section.id }}" data-section-type="footer-section">
   <div id="FooterMenus" class="footer__section footer__section--menus">
-    <div class="page-width">
+    <div class="page-width footer-flex">
+      {% render 'newsletter-footer' %}
       <div class="footer__blocks">
         {%- for block in section.blocks -%}
           <div {{ block.shopify_attributes }} class="footer__block" data-type="{{ block.type }}">

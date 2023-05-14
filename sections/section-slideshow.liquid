@@ -148,7 +148,7 @@ div#shopify-section-template--14436022157421__featured-collection {
     {%- capture slide_class -%}hero-slide hero-slide--{{ alignment }} hero-slide--style-{{ color_style }}{% if forloop.index == 1 %} initial-slide{% endif %}{% if image == blank %} slide--onboarding{% endif %} {{ section.settings.slide_height }}{%- endcapture -%}
 
     {%- if image_link -%}
-      <a href="{{ link }}" class="{{ slide_class }}" {{ block.shopify_attributes }} data-slide="{{ block.id }}" data-slide-index="{{ forloop.index0 }}" data-style="{{ color_style }}">
+      <a href="{{ link }}" onclick="location.href='{{ link }}'" class="{{ slide_class }}" {{ block.shopify_attributes }} data-slide="{{ block.id }}" data-slide-index="{{ forloop.index0 }}" data-style="{{ color_style }}">
     {%- else -%}
       <div class="{{ slide_class }}" {{ block.shopify_attributes }} data-slide="{{ block.id }}" data-slide-index="{{ forloop.index0 }}" data-style="{{ color_style }}">
     {%- endif -%}
@@ -295,8 +295,8 @@ div#shopify-section-template--14436022157421__featured-collection {
 </section>
 
 {%- if show_nav_arrows and section.blocks.size > 1 -%}
-  <button class="slider-arrow slider-arrow--prev" aria-label="{{ 'slideshow.previous' | t }}" type="button" data-prev-arrow>{% render "icon-submit" %}</button>
-  <button class="slider-arrow slider-arrow--next" aria-label="{{ 'slideshow.next' | t }}" type="button" data-next-arrow>{% render "icon-submit" %}</button>
+  <button class="slider-arrow slider-arrow--prev flip-l" aria-label="{{ 'slideshow.previous' | t }}" type="button" data-prev-arrow >{% render "icon-shft" %}</button>
+  <button class="slider-arrow slider-arrow--next" aria-label="{{ 'slideshow.next' | t }}" type="button" data-next-arrow>{% render "icon-shft" %}</button>
 {%- endif -%}
 
 {%- if show_arrow_down -%}

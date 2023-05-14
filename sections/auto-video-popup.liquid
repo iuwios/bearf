@@ -1,0 +1,156 @@
+
+<style>
+  .c-popup-vid__container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999999;
+    width: 33%;
+    height: 59vw;
+    display: none;
+  }
+
+  .x-btn {
+    position: absolute;
+    z-index: 9999;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  .video-popup_controls {
+    cursor: pointer;
+  }
+
+  .video-popup_controls::-webkit-media-controls {
+    display: none;
+  }
+
+
+@media(max-width: 750px) {
+  .c-popup-vid__container {
+    width: 100%;
+    height: 100vw;
+    top: unset;
+    bottom: 0;
+  }
+}
+
+</style>
+<script>
+  
+
+  window.addEventListener("load", (event) => {
+
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+
+    console.log(document.cookie)
+    document.cookie = cname + "=" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  
+  function checkCookie(cname) {
+    let user = getCookie(cname);
+    let isPlay = false;
+
+    let video_dsk = '{{section.settings.pop_desktop_video.sources[1].url}}'? '{{section.settings.pop_desktop_video.sources[1].url}}': 'https://cdn.shopify.com/videos/c/o/v/2444b0957fd248f2ba73cde0872c80f0.mp4'
+
+    let video_mb = '{{section.settings.pop_mobile_video.sources[1].url}}'? '{{section.settings.pop_mobile_video.sources[1].url}}': 'https://cdn.shopify.com/videos/c/o/v/1f22cd8c86884cabafa9ea81206797a7.mp4'
+
+    console.log(user)
+    if (user != "") {
+
+    } else {
+
+      const boxWrapper = document.getElementById("MainContent");
+      const box = document.createElement("div");
+
+      if(window.innerWidth > 750) {
+        box.innerHTML = `<video autoplay muted playsinline loop preload='auto' class='video-popup_controls'><source src=${video_dsk} type='video/mp4'></video><div class='x-btn' style='font-weight:400; background:white; padding:4px 7px; border-radius:50%'>X</div>`;
+      }else {
+        box.innerHTML = `<video autoplay muted playsinline loop preload='auto' class='video-popup_controls'><source src=${video_mb} type='video/mp4'></video><div class='x-btn' style='font-weight:400; background:white; padding:4px 7px; border-radius:50%'>X</div>`;
+      }
+     
+      box.classList.add("c-popup-vid__container");
+      boxWrapper.appendChild(box);
+
+      document.querySelector('.x-btn').addEventListener('click', function(){
+        box.remove()
+        setCookie(cname, "", .083);
+      })
+
+      document.querySelector('.video-popup_controls').addEventListener('loadeddata', (e) => {
+        document.querySelector('.c-popup-vid__container').style.display = "block"
+
+        e.target.addEventListener('click', function(){
+          setCookie(cname, "", 1);
+          window.location.href='/pages/giftguide'
+        })
+        
+      });
+      /*
+      document.querySelector('.video-popup_controls').addEventListener('click', function(){
+        if(isPlay) {
+          setCookie(cname, "", 1);
+          window.location.href='pages/giftguide'
+        } else {
+          isPlay = true
+          this.play();
+        }
+      })
+      */
+    }
+  }
+    checkCookie('showPopupVid')
+  });
+
+
+  
+  </script>
+
+{% schema %}
+  {
+    "name": "Video Popup",
+    "class": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Media Content",
+        "info": "Mobile and Desktop Video"
+      },
+      {
+        "type": "video",
+        "id": "pop_desktop_video",
+        "label": "Desktop Popup Video"
+      },
+      {
+        "type": "video",
+        "id": "pop_mobile_video",
+        "label": "Mobile Popup Video"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Popup Video"
+      }
+    ]
+  } 
+  {% endschema %}

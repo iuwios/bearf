@@ -8,10 +8,22 @@ $('.promo').click(function(){
 
 @media screen and (max-width: 767px) {
   .column_height_1{
-    height: 400px;
+    height: 100%;
+    justify-content: center !important;
+    flex-direction: column;
+    align-items: center !important;
   }
   .column_height_2{
-    height: 500px;
+    height: 100%;
+    justify-content: center !important;
+    flex-direction: column;
+    align-items: center !important;
+  }
+
+  .grid--flush-bottom {
+    display: flex;
+    flex-flow: wrap;
+    margin-bottom: 0 !important
   }
 }
   

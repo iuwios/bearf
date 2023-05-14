@@ -1975,7 +1975,7 @@ a.btn1 {
 }
 
 .site-footer a{
-    color:{{ settings.color_footer_text | default: "#fff" }};
+    color:"#fff" ;
     color:var(--colorFooterText);
   }
 
@@ -2013,7 +2013,7 @@ a.btn1 {
   margin-bottom:15px;
   font-weight:700;
   font-size:var(--typeBaseSize);
-  color:#F4F4F4;
+  color:white;
 }
 
 .footer__subscribe{

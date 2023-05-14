@@ -1,0 +1,1019 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
+<style>
+
+.product-block__image:hover .product-block__image-hover,
+.product-block__image:hover .product-block__image-inner {
+    opacity: 1;
+    visibility: visible;
+    will-change: transform;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease, visibility 0s linear 0s;
+  }
+  .product-block__image:hover .product-block__image-hover {
+    
+  }
+}
+
+
+.touch .product-block__image-hover,
+.touch .product-block__image-inner,
+.touch .quickView-button {
+  display: none;
+}
+
+.page-title__heading {
+  color: var(---color-heading);
+  font-family: var(---heading-font-family);
+  font-weight: var(---heading-font-weight);
+  font-style: var(---heading-font-style);
+  letter-spacing: var(---heading-letter-spacing);
+  font-size: 55px;
+    line-height: 1.2;
+}
+
+.main-content>.page-header { display: none; }
+  .crystal-set-collection-banner-section .crystal-set-collection-container.container .crystal-set-collection-row .crystal-set-collection-col img { max-height: 850px; width: 100%; object-fit: cover; }
+  .crystal-set-collection-container.container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; /*margin-top:10px;*/ }
+
+   @media not all and (max-width: 768px){
+    .crystal-set-collection-container.container.Emerald { padding-right: 15px; padding-left: 15px; max-width: 1267px; margin-bottom: 50px;margin-top: -5px;}  
+    .crystal-set-collection-container.container.Emerald-Mobile {display:none;}
+    .crystal-set-collection-container.container.Crystal { padding-right: 15px; padding-left: 15px; max-width: 1267px; margin-bottom: 50px;margin-top: -5px;}  
+
+    .crystal-set-collection-container.container.Opal { padding-right: 15px; padding-left: 15px; max-width: 1267px; margin-bottom: 50px;margin-top: -5px;}  
+    .crystal-set-collection-container.container.Opal-Mobile {display:none;}
+
+   }
+  
+   @media all and (max-width: 768px){
+    .crystal-set-collection-container.container.Emerald { display:none;}
+    .crystal-set-collection-container.container.Emerald-Mobile {margin-top: 5px;margin-bottom: 25px; width: 95%;}
+    .crystal-set-collection-container.container.Crystal-Mobile {margin-top: 5px;margin-bottom: 25px; width: 95%;}
+    .crystal-set-collection-container.container.Opal { display:none;}
+    .crystal-set-collection-container.container.Opal-Mobile {margin-top: 5px;margin-bottom: 25px; width: 95%;}
+
+   }
+
+  @media(min-width: 768px){
+    .crystal-set-collection-top-short-description-section{
+      height: 103px;
+    }
+    .mg-23 {
+      margin-bottom: -23px !important;
+    }
+    .button--light {
+      padding: 16px 69px;
+    }
+  }
+
+
+  
+  .crystal-set-collection-row.row { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap;  }
+  section.crystal-set-collection-section.crystal-set-collection-two-col-img-sec.section.shopify-section { padding: 70px 0px; }
+  .rows-of-2 .col-md-6 { width: 50%; float: left; padding-left: 50px; padding-right: 50px; }
+  .crystal-set-collection-two-col-img-sec .row .col-md-6 .img-div1 { float: right; }
+  .crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { text-align: right; float: right; margin-bottom: 0;}
+  .crystal-set-collection-two-col-img-sec .row .col-md-6 .img-div:last-child { float: left; }
+  .crystal-set-collection-two-col-img-sec .row .col-md-6 .img-div img { max-height: 544px; object-fit: contain; width: 100%; }
+  p.top-short-description-txt.crystal-set-collection-font1 {text-align: center;color: #4C3935;font-size: 21px;line-height: 1.8em;font-family:'Quicksand', sans-serif; }
+  p.top-short-description-txt.crystal-set-collection-font2 {text-align: center;color: #AFB091;font-size: 21px;line-height: 1.8em;font-family:'Quicksand', sans-serif; }
+
+  section.crystal-set-collection-sixth-section.shopify-section { padding: 0px 0px 30px 0px; }
+    p.for-desktop-devices{ display:none; margin-bottom: 0;}
+    p.for-mobile-devices{ display:none; margin-bottom: 0;}
+	@media screen and (max-width: 1200px){
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { margin-top: 30%; }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { }
+   }
+  @media screen and (max-width: 1024px){
+  	.crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { }
+     p.top-short-description-txt.crystal-set-collection-font1 {text-align: center;color: #4C3935;font-size: 17px;line-height: 1.8em;font-family:'Quicksand', sans-serif; }
+     p.top-short-description-txt.crystal-set-collection-font2 {text-align: center;color: #AFB091;font-size: 17px;line-height: 1.8em;font-family:'Quicksand', sans-serif; }
+      section.crystal-set-collection-sixth-section.shopify-section {
+      padding: 0px 0px 40px 0px;
+    }
+
+  }
+  @media screen and (max-width: 900px){
+  	.crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { margin-top: 45%; }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { }
+     section.crystal-set-collection-sixth-section.shopify-section {
+      padding: 0px 0px 40px 0px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .top-short-description-txt br{ display:none; }
+    p.for-desktop-devices{ display:none; }
+    p.for-mobile-devices{ display:block; }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6 .sign-img-div { text-align: center; }
+    .rows-of-2 .col-md-6{ width: 100%; padding: inherit;}
+    .crystal-set-collection-two-col-img-sec .row .col-md-6 .img-div1,.crystal-set-collection-two-col-img-sec .row .col-md-6 .img-div:last-child{ float: none; }
+  	.crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { float: none; text-align:center; margin-top: 0%; margin-bottom: 3%;}
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { float: none; text-align:center; }
+     section.crystal-set-collection-sixth-section.shopify-section {
+      padding: 0px 0px 40px 0px;
+    }
+    .collection-grid__row.collection-grid__row--grid {
+        margin-bottom: -6%;
+    }
+
+    .container-padd60-crystal-set-collection {
+      margin: 0 auto;
+      max-width: 573px;
+    }
+  }
+  @media screen and (max-width: 600px){
+  	.crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { }
+     section.crystal-set-collection-sixth-section.shopify-section {
+      padding: 0px 0px 30px 0px;
+     }
+    .collection-grid__row.collection-grid__row--grid {
+        margin-bottom: -8%;
+    }
+    .container-padd60-crystal-set-collection {
+      margin: 0 auto;
+      max-width: 500px;
+    }
+  }
+  @media screen and (max-width: 480px){
+  	.crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { }
+     section.crystal-set-collection-sixth-section.shopify-section {
+      padding: 0px 0px 30px 0px;
+     }
+    .collection-grid__row.collection-grid__row--grid {
+        margin-bottom: -8%;
+    }
+    .container-padd60-crystal-set-collection {
+      margin: 0 auto;
+      max-width: 300px;
+    }
+  }
+  @media screen and (max-width: 320px){
+  	.crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { }
+     section.crystal-set-collection-sixth-section.shopify-section {
+      padding: 0px 0px 30px 0px;
+     }
+    .collection-grid__row.collection-grid__row--grid {
+        margin-bottom: -8%;
+    }
+
+    .container-padd60-crystal-set-collection {
+      margin: 0 auto;
+      max-width: 300px;
+    }
+  }
+  @media screen and (min-width: 769px){
+    p.for-desktop-devices{ display:block; }
+    p.for-mobile-devices{ display:none; }
+  @media screen and (min-width: 1170px){
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { max-width: 85%; margin-top: 165px; }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { max-width: 85%; margin-bottom: 60px; }
+  }
+  
+  @media screen and (min-width: 1200px){
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { max-width: 80%; margin-top: 175px; }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { max-width: 80%; margin-bottom: 60px; }
+  }
+  
+  @media screen and (min-width: 1400px){
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:first-child p { max-width: 68%; }
+    .crystal-set-collection-two-col-img-sec .row .col-md-6:last-child p { max-width: 68%; margin-bottom: 60px; }
+  }
+
+  @media screen and (min-width: 768px) {  
+    .container-padd60-crystal-set-collection{
+      margin: 0 auto;
+      max-width: 950px;
+    }
+  }
+    
+
+
+
+</style>
+
+<picture alt="New Years Set">
+  <source media="(min-width:600px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_15_1f6730ff-a82c-46d6-9744-ad42de93c703.jpg?v=1674582267">
+  <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_181.jpg?v=1674582264" alt="New Years Set">
+</picture>
+
+<div class="page-title" >
+  <div class="container">
+    <div class="page-title__heading">Most Gifted</div>
+  </div>
+</div>
+
+
+{% render 'valentine-collection-row-products' %}
+
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="valentine-main__container">
+  <div class="pink-line">
+
+  </div>
+  <div class="collection-valentines__container">
+      <div class="flex__container">
+        
+        <div class="left-img__wrapper">
+          <picture style="cursor: pointer;" onclick="location.href='/collections/all-personalized'">
+            <source media="(min-width:850px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_162_0d4d0f0b-0bf9-45b9-9107-8cce7d913d4b.png?v=1674588824">
+            <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_162.png?v=1674572715" alt="Valentines">
+          </picture>
+        </div>
+
+        <div class="slider__container">
+          <div class="slider-container-img">
+            <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Rectangle_29.png?v=1674573764" class="control next">
+          </div>
+
+          <div class="slider-wrapper">
+            <div class="v-dots">
+              <img class="dt-1" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Ellipse_3.png?v=1674587538">
+              <img class="dt-2" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Ellipse_3.png?v=1674587538">
+              <img class="dt-3" src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Ellipse_3.png?v=1674587538">
+            </div>
+            <div class="slider-container">
+
+              {% for product in collections.all-personalized.products %}
+                {% if counters contains "2" %}
+                    {%- break -%}
+                {% else %}
+                <div class="img-cont">
+                  {%- render 'product-grid-item-nyears', product: product, grid_block_size: 'lg_s1', grid_block_size_mobile: 's1', index: forloop.index -%}
+                  {% capture counters %}{% increment counters %} {% endcapture %}
+                </div>
+                    
+                {% endif %}
+              {% endfor   %}
+
+              <!--<div class="img-cont">
+                <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Screenshot_2023-01-12_at_9.35_1.jpg?v=1674580530">
+              </div>
+              <div class="img-cont">
+                <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Screenshot_2023-01-12_at_9.35_1.jpg?v=1674580530">
+              </div>
+              <div class="img-cont">
+                <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Screenshot_2023-01-12_at_9.35_1.jpg?v=1674580530">
+              </div>-->
+
+            </div>
+
+
+
+            <!--
+            <div class="slider-controls">
+              <span class="control prev">&larr;</span>
+            </div>
+            -->
+          </div>
+        </div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:center">
+      <a href="#" class="button gift button--light-v mb-only" style="margin-bottom: 40px">Shop All</a>
+    </div>
+  </div>
+</div>
+
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="page-title" style="margin-top: unset;">
+  <div class="container">
+    <div class="page-title__heading" style="margin-top:unset">Gift Under $60</div>
+  </div>
+</div>
+
+
+{% render 'valentine-collection-third-row-products' %}
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-title" style="margin-top: unset;">
+  <div class="container">
+    <div class="page-title__heading" style="margin-top:unset">Gift Under $100</div>
+  </div>
+</div>
+
+{% render 'valentine-collection-fourth-row-products' %}
+
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="position: relative; ">
+  <picture class="v-background">
+    <source media="(min-width:850px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_176.png?v=1674583565">
+    <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_174.png?v=1674583591" alt="Valentines">
+  </picture>
+</div>
+<div class="page-title" style="margin-top: unset; position: relative;">
+  
+  <div class="container">
+    <div class="page-title__heading" style="margin-top:unset">Sentimental Gift</div>
+  </div>
+  
+</div>
+
+{% render 'valentine-collection-fifth-row-products' %}
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+{% render 'valentines-collection-third-row-products' %}
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="collection-grid__row collection-grid__row--grid">
+  <div class="flex-text-img">
+    <div class="v-flex-center">
+      <div class="typo-v-header">Come by and Shop!</div>
+      <div class="typo-v-b">There’s nothing like trying on your favorite pieces in person. Come in and try on the jewelry you’ll love!</div>
+      <a href="/pages/location" class="button gift button--light-v dsk-only">Find our locations</a>
+    </div>
+    <picture alt="Glam Set Banner" class="flex-center-mb">
+      <source media="(min-width:600px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/DAA01626_copy_1.jpg?v=1674585367">
+      <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/DAA01626_copy_1.jpg?v=1674585367" alt="Glam Set Banner">
+      <a href="/pages/location" class="button gift button--light-v mb-only">Find our locations</a>
+    </picture>
+  </div>
+</section>
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--
+<section class="crystal-set-collection-banner-section shopify-section collection-grid__row collection-grid__row--grid n-years-mb-display">
+
+      <picture alt="New Years Set" class="n-years-mb-display">
+        <source media="(min-width:600px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_44.jpg?v=1671929289">
+        <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_150.jpg?v=1672182625" alt="New Years Set">
+      </picture>
+
+</section>
+
+-->
+
+<picture alt="New Years Set" style="cursor: pointer;" onclick="location.href='/products/gift-card-1'">
+  <source media="(min-width:600px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Frame_8_2.jpg?v=1674615146">
+  <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Frame_8_90894d4b-5ba3-438b-9b37-c04f97365a0d.jpg?v=1674589015" alt="New Years Set">
+</picture>
+
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+<picture alt="New Years Set" >
+  <source media="(min-width:600px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_44_2.jpg?v=1674607931">
+  <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_150_a6ce2bd5-3e5b-43dd-b84f-1dcbb228585d.jpg?v=1674607931" alt="New Years Set">
+</picture>
+
+<section class="crystal-set-collection-top-short-description-section shopify-section">
+  <div class="crystal-set-collection-container container">
+  	<div class="crystal-set-collection-row row">
+      <div class="crystal-set-collection-col col-md-12 align-center" style="width: 100%;margin-top: 10px;margin-bottom: 30px;">
+        <!--<p class="top-short-description-txt crystal-set-collection-font1">This season, we're taking it back to the basics. We've curated all the essentials you need to build the perfect jewelry wardrobe.<br>These pieces are a necessity in every jewelry collection, whether you're in love with statement pieces for a bolder look or prefer to keep it minimal.</p>-->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<script>
+  document.querySelector('.no-touch').classList.remove('no-touch')
+
+</script>
+}
+
+
+
+
+<style>
+  /* parent of book-container & container (slider) */
+main {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* wraps entire slider */
+.slider-wrapper {
+  /*overflow: hidden;*/
+ /* width: 100%;*/
+ width: 302px;
+ height: 393px;
+  position: relative;
+}
+
+.slider-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 1%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+/* slider controls*/
+/*
+.control {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 10px;
+  color: #fff;
+  font-size: 3rem;
+  padding: 0;
+  margin: 0;
+  line-height: 5px;
+}
+*/
+
+.control {
+  width: 19.54px;
+  height: 31.54px;
+}
+
+.slider__container {
+  display: flex;
+}
+
+.slider-container-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 68px;
+  padding-right: 20px;
+  background: #E9DCE5;
+  z-index: 10;
+  transform: translateX(-23px);
+  scale: 1.2;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+   user-select: none;
+}
+
+.prev {
+  left: 1.1rem;
+}
+
+.next {
+  right: 1.1rem;
+}
+
+/*
+.prev:hover,
+.next:hover {
+  transform: scale(1.5,1.5);
+}
+*/
+
+.slider-container {
+  /* 
+  n variable holds number of images to make .container wide enough 
+  to hold all its image children 
+  that still have the same width as its parent
+  */
+  display: flex;
+  align-items: center;
+  /*overflow-y: hidden;*/
+  width: 100%; /* fallback */
+  width: calc(var(--n)*100%);
+  /*height: 31vw; */
+  height: fit-content;
+  max-height: 100vh;
+  transform: translate(calc(var(--i, 0)/var(--n)*-100% + var(--tx, 0px)));
+
+}
+
+/* transition animation for the slider */
+.smooth { 
+  /* f computes actual animation duration via JS */
+  transition: transform calc(var(--f, 1)*.5s) ease-out; 
+}
+
+/* images for the slider */
+.img-cont {
+  width: 100%; /* can't take this out either as it breaks Chrome */
+  width: calc(100%/var(--n));
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+}
+
+.slider-container {
+  z-index: 0;
+  position: relative;
+}
+
+/*
+.slider-container:hover .img-cont {
+  cursor: pointer;
+}
+*/
+
+/*
+.img-cont img {
+  width: 302px;
+  height: 393px;
+}
+*/
+
+.flex__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pink-line {
+  background: #E9DCE5;
+  width: 100%;
+  height: 663px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.valentine-main__container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.left-img__wrapper {
+  width: 565px;
+  height: fit-content;
+  z-index: 11;
+}
+
+.collection-valentines__container {
+  max-width: 1300px;
+}
+
+.flex-text-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button--light-v {
+  background: transparent;
+  color: black;
+}
+
+.flex-text-img img {
+  width: 100%;
+}
+
+.typo-v-header {
+  font-family: 'Optima';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 61px;
+  
+  color: #000000;
+}
+
+.typo-v-b {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 42px;  
+  
+  color: #000000;
+  margin-bottom: 25px;
+  width: 87%;
+}
+
+.mb-only {
+  display: none;
+}
+
+.dsk-only {
+  display: inline-block;
+}
+
+.v-dots {
+  position: absolute;
+  bottom: -62px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+
+}
+
+.v-dots img {
+  width: 15px;
+  height: 15px;
+  margin: 0 6.5px;
+  cursor: pointer;
+}
+
+.v-background {
+  position: absolute;
+    top: -470px;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    height: 1846px;
+    width: auto;
+}
+
+@media(max-width:850px) {
+
+  .page-title__heading {
+    font-size: 24px;
+  }
+
+  .v-background {
+    position: absolute;
+      top: 0;
+      /* left: 50%; */
+      /* transform: translateX(-50%); */
+      height: auto;
+      width: 100%;
+  }
+
+  .mb-only {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .v-flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flex-center-mb {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  .dsk-only {
+    display: none;
+
+  }
+
+  .flex-text-img {
+    flex-direction: column;
+  }
+  
+
+  .typo-v-header {
+    /* Web-header-m */
+    font-family: 'Optima';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+
+    color: #000000;
+  }
+  
+  .typo-v-b {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    /* or 133% */
+
+    text-align: center;
+
+    color: #000000;
+  }
+
+
+  .slider-wrapper {
+    width: 201px;
+    height: 305px;
+    padding: 0 0px;
+  }
+
+  .control {
+    width: 6px;
+    height: 11px;
+  }
+
+  .slider-container-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 19px;
+    padding-right: 7.5px;
+    background: #E9DCE5;
+    transform: unset;
+  }
+
+  .img-cont img {
+    width: 145px;
+    height: 193px;
+  }
+/*
+  .slider-container:hover {
+      background: green;
+  }
+  */
+
+  .flex__container {
+    flex-direction: column;
+  }
+
+  .pink-line {
+    background: #E9DCE5;
+    width: 100%;
+    height: 503px;
+    position: absolute;
+    top: unset;
+    transform: unset;
+    bottom: 0;
+  }
+
+  .valentine-main__container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .left-img__wrapper {
+    width: 80%;
+    height: fit-content;
+    z-index: 11;
+    margin-bottom: 23px;
+  }
+
+  .collection-valentines__container {
+    max-width: 1300px;
+  }
+
+  .slider__container {
+    width: 100%;
+    margin-bottom: 23px;
+  }
+
+  .v-dots {
+    display: none;
+  }
+}
+
+</style>
+
+
+<script>
+  //  set --n (used for calc in CSS) via JS, after getting
+// .container and the number of child images it holds:
+
+const _C = document.querySelector(".slider-container"),
+N = _C.children.length;
+
+console.log(N)
+
+_C.style.setProperty("--n", N);
+
+// detect the direction of the motion between "touchstart" (or "mousedown") event
+// and the "touched" (or "mouseup") event
+// and then update --i (current slide) accordingly
+// and move the container so that the next image in the desired direction moves into the viewport
+
+// on "mousedown"/"touchstart", lock x-coordiate
+// and store it into an initial coordinate variable x0:
+let x0 = null;
+let locked = false;
+
+function lock(e) {
+x0 = unify(e).clientX;
+// remove .smooth class
+_C.classList.toggle("smooth", !(locked = true));
+}
+
+// next, make the images move when the user swipes:
+// was the lock action performed aka is x0 set?
+// if so, read current x coordiante and compare it to x0
+// from the difference between these two determine what to do next
+
+let i = 0; // counter
+let w; //image width
+
+// update image width w on resive
+function size() {
+w = window.innerWidth;
+}
+
+function move(e) {
+if (locked) {
+  // set threshold of 20% (if less, do not drag to the next image)
+  // dx = number of pixels the user dragged
+  let dx = unify(e).clientX - x0,
+    s = Math.sign(dx),
+    f = +(s * dx / w).toFixed(2);
+
+  // Math.sign(dx) returns 1 or -1
+  // depending on this, the slider goes backwards or forwards
+
+  if ((i > 0 || s < 0) && (i < N - 1 || s > 0) && f > 0.1) {
+    _C.style.setProperty("--i", (i -= s));
+    f = 1 - f;
+  }
+
+  _C.style.setProperty("--tx", "0px");
+  _C.style.setProperty("--f", f);
+  _C.classList.toggle("smooth", !(locked = false));
+  x0 = null;
+}
+}
+
+size();
+
+addEventListener("resize", size, false);
+
+// ===============
+// drag-animation for the slider when it reaches the end
+// ===============
+
+function drag(e) {
+e.preventDefault();
+
+if (locked) {
+  _C.style.setProperty("--tx", `${Math.round(unify(e).clientX - x0)}px`);
+}
+}
+
+// ===============
+// prev, next
+// ===============
+//let prev = document.querySelector(".prev");
+let next = document.querySelector(".next");
+
+let dt_1 = document.querySelector(".dt-1");
+let dt_2 = document.querySelector(".dt-2");
+let dt_3 = document.querySelector(".dt-3");
+
+
+/*
+prev.addEventListener("click", () => {
+if(_C.style.getPropertyValue("--i") == null || _C.style.getPropertyValue("--i") == undefined ) {
+  i = 0
+}
+if (i == 0) {
+  console.log("start reached");
+} else if (i > 0) {
+  // decrease i as long as it is bigger than the number of slides
+  i = i - 1;
+  _C.style.setProperty("--i", i);
+}
+});
+*/
+
+next.addEventListener("click", () => {
+if(_C.style.getPropertyValue("--i") == null || _C.style.getPropertyValue("--i") == undefined ) {
+  i = 0
+}
+if (i < 2) {
+  i = i + 1;
+  // increase i as long as it's smaller than the number of slides
+  _C.style.setProperty("--i", i);
+}
+});
+
+dt_1.addEventListener("click", () => {
+  i = 0
+  _C.style.setProperty("--i", i);
+
+});
+dt_2.addEventListener("click", () => {
+  i = 1
+  _C.style.setProperty("--i", i);
+
+});
+dt_3.addEventListener("click", () => {
+  i = 2
+  _C.style.setProperty("--i", i);
+
+});
+
+
+// ===============
+// slider event listeners for mouse and touch (start, move, end)
+// ===============
+
+_C.addEventListener("mousemove", drag, false);
+_C.addEventListener("touchmove", drag, false);
+
+_C.addEventListener("mousedown", lock, false);
+_C.addEventListener("touchstart", lock, false);
+
+_C.addEventListener("mouseup", move, false);
+_C.addEventListener("touchend", move, false);
+
+// override Edge swipe behaviour
+_C.addEventListener(
+"touchmove",
+e => {
+  e.preventDefault();
+},
+false
+);
+
+// unify touch and click cases:
+function unify(e) {
+return e.changedTouches ? e.changedTouches[0] : e;
+}
+
+</script>
+

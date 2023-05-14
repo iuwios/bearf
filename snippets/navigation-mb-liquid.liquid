@@ -1,0 +1,25 @@
+<div class="nav-user">
+  <ul>
+    {%- if shop.customer_accounts_enabled -%}
+      {%- if customer -%}
+        <li class="nav-user__item nav-user__item--account">
+          <a href="{{ routes.account_url }}" class="nav-user__link">{{ 'customer.link.my_account' | t }}</a>
+        </li>
+      {%- else -%}
+        <li class="nav-user__item nav-user__item--account">
+          <a href="{{ routes.account_login_url }}" class="nav-user__link">{{ 'customer.link.login' | t }}</a>
+        </li>
+      {%- endif -%}
+    {%- endif -%}
+
+
+
+    {%- if settings.show_search -%}
+      <li class="nav-user__item nav-user__item--search">
+        <a href="/pages/contact-us" class="nav-user__link">CONTACT US</a>
+      </li>
+    {%- endif -%}
+  </ul>
+</div>
+
+{%- render 'social-links' social_class: 'nav-footer', social_inner_class: 'nav-social', social_list_class: 'social-links social-links--nav', last_focusable_element: true -%}

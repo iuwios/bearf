@@ -198,6 +198,10 @@ This file can be re-written at any time.
 (() => { if (!document.documentElement.innerHTML.includes('\\/shop' + '\\/js' + '\\/discount-on-cart-pro.min.js') || window.discountOnCartProAppLoaded) return; let script = document.createElement('script'); script.src = "https://d9fvwtvqz2fm1.cloudfront.net/shop/js/discount-on-cart-pro.min.js?shop=bearfruit-jewelry.myshopify.com"; document.getElementById('docapp-discount-speedup').after(script); })();
 </script>
 
+{% if template.name == "product" or template.name == "collection" %}
+  {% section 'auto-video-popup' %}
+{% endif %}
+
 </head>
 
 

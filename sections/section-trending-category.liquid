@@ -1,0 +1,158 @@
+
+
+<div style="width:100%; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center" class="mg-53-26 calc-cont">
+  <div class="main-header__container"> 
+    <div class="main-header_text">Trending Categories</div>
+    <di class="choose_container">
+      <div class="choose_wrapper">
+        <div class="choose_text">NECKLACES</div>
+        <div class="choose_text">EARRINGS</div>
+        <div class="choose_text">RINGS</div>
+        <div class="choose_text">BRACELETS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="choose_wrapper-mb only-mobile fixedElement" style="display:none">
+  <a href="/collections/necklaces" class="choose_text-2">NECKLACES</a>
+  <a href="/collections/earrings" class="choose_text-2">EARRINGS</a>
+  <a href="/collections/rings" class="choose_text-2">RINGS</a>
+  <a href="/collections/bracelets" class="choose_text-2">BRACELETS</a>
+</div>
+
+<div style="width:100%; overflow:hidden; position:relative">
+  <div class="main mb-collections">
+    <div class="slider slider-nav choose-section">
+      {% for product in collections['necklaces'].products limit:8 %}
+        <a href="{{product.url}}" class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+              {% if product.images[1].src != blank %}
+                <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="product-block__info product-block__info--center">
+            <div class="product-block__top">
+              <h3 class="product-block__title">{{product.title}}</h3>
+            </div>
+            <div class="product-block__price">
+              <p class="price">{{product.price | money_with_currency}}</p>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="slider slider-nav choose-section">
+      {% for product in collections['earrings'].products limit:8 %}
+        <a href="{{product.url}}" class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+              {% if product.images[1].src != blank %}
+                <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="product-block__info product-block__info--center">
+            <div class="product-block__top">
+              <h3 class="product-block__title">{{product.title}}</h3>
+            </div>
+            <div class="product-block__price">
+              <p class="price">{{product.price | money_with_currency}}</p>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="slider slider-nav choose-section">
+      {% for product in collections['rings'].products limit:8 %}
+        <a href="{{product.url}}" class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+              {% if product.images[1].src != blank %}
+                <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="product-block__info product-block__info--center">
+            <div class="product-block__top">
+              <h3 class="product-block__title">{{product.title}}</h3>
+            </div>
+            <div class="product-block__price">
+              <p class="price">{{product.price | money_with_currency}}</p>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <div class="slider slider-nav choose-section">
+      {% for product in collections['bracelets'].products limit:8 %}
+        <a href="{{product.url}}" class="card__wrapper">
+          <div>
+            <div class="hover-cont">
+              <img class="product-main__image {% if product.images[1].src != blank %}hover-image{% endif %}" src="{{ product.images[0].src | product_img_url: "large" }}">
+              {% if product.images[1].src != blank %}
+                <img class="b-image__wrapper" src="{{ product.images[1].src | product_img_url:"large" }}">
+              {% endif %}
+            </div>
+          </div>
+          
+          <div class="product-block__info product-block__info--center">
+            <div class="product-block__top">
+              <h3 class="product-block__title">{{product.title}}</h3>
+            </div>
+            <div class="product-block__price">
+              <p class="price">{{product.price | money_with_currency}}</p>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+
+<div style="width:100%; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center;margin-top:24px" class="mg-71">
+  <a href="/collections/necklaces" class="landing-shop__btn swap_shop"><div>Shop All</div></a>
+</div>
+
+{% schema %}
+  {
+    "name": "Section Trending Category",
+    "class": "section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_dsk",
+        "label": "Image desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mb",
+        "label": "Image mobile"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Section Trending Category"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

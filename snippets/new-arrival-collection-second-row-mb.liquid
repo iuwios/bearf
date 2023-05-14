@@ -61,39 +61,22 @@ These are applied in the collection-grid__block.liquid file
 
 {% comment %} Set tablet size to be one-half {% endcomment %}
 {%- if products_columns > 2 -%}
-  {%- assign grid_block_size = 'lg_s1' | append: columns_size | append: ' med_s13' -%}
+{%- assign grid_block_size = 'lg_s1' | append: columns_size | append: ' med_s13' -%}
 {%- endif -%}
 
-
-<img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_243-min.png?v=1682554528"  class="show-mb">
-
 {%- paginate collection.products by products_limit -%}
-<div class="collection-grid__row collection-grid__row--grid grid-row__block col-rev mg-23"
+<div class="collection-grid__row collection-grid__row--grid only-mobile"
+  style="display:flex"
 data-show-quantity="{{ settings.show_quantity }}"
 data-tags='{% if selected_tags != blank %}{{ selected_tags | split: '+' | json }}{% else %}[]{% endif %}'
 {% if show_sort_filter %}data-sort="{{ sort_by }}"{% endif %}
 data-collection="{{ collection.url | default: routes.all_products_collection_url }}{% if filter_mode == 'default' %}?{% endif %}"
 {% if settings.enable_infinity_scroll %}data-infinity{% endif %}
-data-collection-products style="justify-content:center">
+data-collection-products>
 
-{% assign counters = 0 %}
-<div class="collection-grid__row-block grid-row__block mg-block-r mb-overflow">
-    {% for product in collections.bundle-set-collection-2.products limit:4 offset:4 %} 
-
-        {%- render 'product-grid-item-block-nyears', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index -%}
-     {%- endfor -%}
-</div>
-
-
-<img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/Group_242-min.png?v=1682552961"  class="collection-grid-image__row-block-v mg-block-l hide-mb" style="cursor:pointer" onclick="location.href='/collections/bundle-set-collection-2'">
-
-
-
-</div>
-<div style="width:100%; display:flex; align-items:center; justify-content:center;" class="n-year-mb-only mg-30">
-			<a href="/collections/bundle-set-collection-2" class="button gift button--light ">
-			       Shop All
-			</a>
+{% for product in collections.newarrivals.products limit:6 %}  
+   {%- render 'product-grid-item-glam', product: product, grid_block_size: grid_block_size, grid_block_size_mobile: grid_block_size_mobile, index: forloop.index, flip: 2 -%}
+{%- endfor -%}
 </div>
 {%- endpaginate -%}
 

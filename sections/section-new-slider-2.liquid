@@ -1,0 +1,474 @@
+<style>
+  .auto_container {
+    width: 100%;
+    display: block;
+  }
+  .slide {
+    width: 100%;
+    display: flex;
+    visibility: hidden;
+    text-align: center;
+    width:0;
+    height: 0;
+    opacity: 0;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 2s;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+  }
+  .slide.active {
+    visibility: visible;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+
+  .active > .slider-eyebrow_text{
+    margin-bottom:20px !important;
+  }
+
+  .active > .slider-body_text{
+    margin-bottom: 26px !important;
+  }
+
+.auto-slider__container {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+.a-slider-image__wrapper {
+  width: 50%;
+  position: relative;
+}
+.a-slider-slides__wrapper {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.a-slider-dots__wrapper {
+  width: 5%;
+  display: flex;
+  align-items: end;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 40px;
+}
+.dot {
+  fill: #D5D4D4;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.dot:last-child {
+  margin-bottom: 0;
+}
+
+.slider-eyebrow_text {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 29px;
+  line-height: 30px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  color: #000000;
+  margin: 0;
+
+}
+
+.slider-body_text {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  color: #000000;
+  margin: 0;
+}
+
+.dsk-margin {
+  margin-top: 78px;
+  margin-bottom: 36px;
+}
+
+.dsk-padding {
+  padding-left: 96px;
+}
+
+.jdgm-carousel-title-and-link {
+  padding-left: 0 !important;
+}
+@media(max-width:750px) {
+
+.slide {
+    width: 100%;
+    display: flex;
+    visibility: hidden;
+    text-align: center;
+    width:0;
+    height: 0;
+    opacity: 0;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 2s;
+
+    position: relative;
+    top: unset;
+    left: unset;
+    transform: unset;
+  }
+
+.jdgm-carousel-title {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+.dsk-margin {
+    margin-top: 0;
+    margin-bottom: 27px;
+  }
+.dsk-padding {
+ padding-left: 0;
+ align-items: center;
+}
+
+.slider-eyebrow_text {
+  font-size: 17px !important;
+  line-height: 24.5px !important;
+  
+}
+
+.slider-body_text {
+  font-size: 14px !important;
+  line-height: 24.5px !important;
+}
+
+.active > .slider-eyebrow_text{
+  margin-bottom:10px !important;
+  margin-top: 14px !important;
+}
+
+.active > .slider-body_text{
+  margin-bottom: 20px !important;
+}
+
+  .a-slider-image__wrapper {
+    width: 100%;
+  }
+  .auto-slider__container {
+    flex-direction: column;
+  }
+  .a-slider-slides__wrapper {
+    width: 100%;
+    /*overflow: hidden;*/
+  }
+  .a-slider-dots__wrapper {
+    width: 100%;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 0;
+  }
+  .dot {
+    margin-bottom: 0;
+    margin-right: 12px;
+  }
+  .dot:last-child {
+    margin-right: 0;
+  }
+
+  .slider-eyebrow_text {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 29px;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+
+    color: #000000;
+
+    margin-bottom:20px;
+  }
+
+  .slider-body_text {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+
+    color: #000000;
+  }
+}
+
+.a-slider-slides__wrapper .landing-shop__btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 30%);
+  width: 235px;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+
+</style>
+
+
+
+<div style="width:100%; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center" class="mg-53-26 calc-cont">
+  <div class="main-header__container"> 
+    <div class="main-header_text">Come By And Shop</div>
+  </div>
+</div>
+
+
+<div class="auto-slider__container">
+  <picture class="a-slider-image__wrapper">
+    <source media="(max-width:750px)" srcset="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/DAA01626_copy_1-min.jpg?v=1680024621">
+    <img src="https://cdn.shopify.com/s/files/1/0039/7246/4749/files/DAA01626_copy_1-min.jpg?v=1680024621">
+
+    <!--
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%)" class="only-desktop">
+      <div class="main-header_text" style="margin-bottom:16px">Come By And Shop</div>
+      <a href="#" class="landing-shop__btn only-desktop"><div>Find our locations here</div></a>
+    </div>
+    -->
+  </picture>
+
+  <div class="auto_container a-slider-slides__wrapper" >
+    <div class="slide  active">
+      <h2 class="slider-eyebrow_text">Fashion Island</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">941 Newport Center Drive<br> Newport Beach, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Irvine Spectrum Center</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text" >742 Spectrum Center Drive<br> Irvine, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">The Shops at Santa Anita</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">400 S Baldwin Ave, E20<br> Arcadia, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Westfield Century City</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">10250 Santa Monica Blvd, Space 9198<br> Los Angeles, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Denver International Airport</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">8500 Peña Blvd,<br>
+      Denver, CO<br>
+      </div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Beverly Center</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">8500 Beverly blvd, Space 605,<br> Los Angeles, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Del Amo Fashion Center</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">3525 W Carson St, #410B<br> Torrance, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Pacific City</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">21010 E Pacific Coast Hwy, B100<br> Huntington Beach, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Galleria Dallas</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">13350 Dallas Pkwy, Suite 1225<br> Dallas, TX</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Los Cerritos Center</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">255 Los Cerritos Center, Space D20<br>Cerritos, CA</div>
+    </div>
+    <div class="slide " data-duration="3500">
+      <h2 class="slider-eyebrow_text">Santa Monica Place</h2 class="slider-eyebrow_text">
+      <div class="slider-body_text">395 Santa Monica Pl, Space 112<br>Santa Monica, CA</div>
+    </div>
+
+    <a href="/pages/location" class="landing-shop__btn only-desktop"><div>Find our locations here</div></a>
+  </div>
+  <div class="a-slider-dots__wrapper">
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg  class="dot" width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+    <svg class="dot" width="10" height="10" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
+      <circle cx="5" cy="5" r="5" transform="rotate(90 5 5)" />
+    </svg>
+</div>
+<script>
+  var autoslider = autoslider || {
+  el: {
+    slides: document.getElementsByClassName('slide'),
+    dots: document.getElementsByClassName('dot')
+  },
+  defaultDuration: 3500,
+  init: function () {
+    console.log('ini');
+    this.current = 0;
+    this.max = this.el.slides.length - 1;
+    this.timer = this.getTimerValue(this.current);
+    this.setTimer;
+    this.initBtnDots();
+    this.next();
+  },
+  initBtnDots: function () {
+    var that = this;
+    for(let i=0; i< this.el.dots.length; i++) {
+      this.el.dots[i].addEventListener('click', function(){
+        that.changeSlide(i);
+        that.current = i;
+        that.stopFunction(that.setTimer)
+        that.next();
+      })
+    }
+  },
+  stopFunction: function(curTimer) {
+    clearTimeout(curTimer);
+  },
+  next: function () {
+    var that = this,
+        nextIndex = this.current + 1;
+    if (this.current === this.max) {
+      nextIndex = 0;
+    }
+    this.timer = this.getTimerValue(this.current);
+    that.setTimer = setTimeout(function () {
+      that.changeSlide(nextIndex);
+      that.current = nextIndex;
+      that.next();
+    }, this.timer, nextIndex);
+  },
+  changeSlide: function (nextIndex) {
+    this.el.slides[this.current].classList.remove('active');
+    this.el.slides[nextIndex].classList.add('active');
+    this.el.dots[this.current].style.fill = '#D5D4D4';
+    this.el.dots[nextIndex].style.fill = '#C0BFBF';
+  },
+  getTimerValue: function (index) {
+    return this.el.slides[index].dataset.duration || this.defaultDuration;
+  }
+};
+autoslider.init();
+</script>
+
+
+<div style="width:100%; overflow:hidden; position:relative; display:flex; align-items:center; justify-content:center; margin-top:30px" class="only-mobile">
+  <a href="/pages/location" class="landing-shop__btn"><div>Find our locations here</div></a>
+</div>
+
+{% schema %}
+  {
+    "name": "Pin Scroll 2",
+    "class": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Media Content",
+        "info": "If all are blank, nothing will appear. Below is a higher priority."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "eyebrow",
+        "name": "Heading Eyebrow",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "liquid",
+            "id": "text",
+            "default": "Awesome!",
+            "label": "heading eyebrow"
+          },
+          {
+            "type": "select",
+            "id": "heading_eyebrow_size",
+            "options": [
+              {
+                "value": "h1",
+                "label": "h1"
+              },
+              {
+                "value": "h2",
+                "label": "h2"
+              },
+              {
+                "value": "h3",
+                "label": "h3"
+              },
+              {
+                "value": "h4",
+                "label": "h4"
+              },
+              {
+                "value": "h4-v2",
+                "label": "h4-v2"
+              }
+            ],
+            "default": "h4",
+            "label": "Heading text size"
+          },
+          {
+            "type": "color",
+            "id": "color_eyebrow",
+            "label": "Eyebrow Color",
+            "default": "#EC2544"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Pin Scroll 2",
+        "blocks": [
+          {
+            "type": "eyebrow"
+          }
+        ]
+      }
+    ]
+  } 
+  {% endschema %}

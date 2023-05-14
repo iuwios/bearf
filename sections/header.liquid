@@ -129,7 +129,7 @@
   data-header
   data-header-height
   data-scroll-lock-fill-gap>
-  <div class="container">
+  <div class="container container-header-nav">
     <div class="row">
       {%- if has_logo_image or show_shop_name -%}
         <h1 class="nav-item logo{% unless has_logo_image %} logo--text-only{% endunless %}">
@@ -359,11 +359,29 @@
   <button class="nav-mobile-close" aria-expanded="false" aria-label="{{ 'general.accessibility.menu_toggle' | t }}" data-menu-toggle>
     {%- render 'icon-close' -%}
   </button>
+
   <div class="nav-inner" data-hamburger-scrollable>
+    <div class="container search-main-container" style="background:#F0EDE5">
+      <div class="search-container search-container-nav" style="background:#F0EDE5">
+        <form action="{{ routes.search_url }}" method="get" class="search-page-form nav-form" role="search" style="background:#F0EDE5 !important">
+            <input type="hidden" name="type" value="{{ settings.search_type }}" />
+            <input type="hidden" name="options[prefix]" value="last" />
+            <input name="q" type="search" id="SearchField" placeholder="{{ 'general.slide_out_navigation.search_placeholder' | t }}" value="{{ search.terms | escape }}" class="search__field search_nav search-nav" autofocus />
+            <label for="SearchField" class="search__icon-label abs-right">
+              {%- render 'icon-search-2' -%}
+              <span class="accessible-label">{{ 'general.accessibility.search' | t }}</span>
+            </label>
+            <button type="submit" class="search__submit" aria-label="{{ 'search.button.text' | t }}" title="{{ 'search.button.text' | t }}">
+            </button>
+          </form>
+      </div>
+    </div>
+
     <div class="nav-inner-wrapper">
       {%- render 'navigation', is_hamburger_nav: true -%}
     </div>
   </div>
+  
 </nav>
 
 
@@ -522,7 +540,7 @@
     },
     {
       "type": "header",
-      "content": "Mega menu"
+      "content": "Mega menu Right"
     },
     {
       "type": "image_picker",
@@ -548,6 +566,36 @@
     {
       "type": "url",
       "id": "meganav_image_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Mega menu Left"
+    },
+    {
+      "type": "image_picker",
+      "id": "meganav_image_2",
+      "label": "Image",
+      "info": "Recommended size: 500 x 800 px"
+    },
+    {
+      "type": "range",
+      "id": "image_aspect_ratio_2",
+      "label": "Image aspect ratio",
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.1,
+      "unit": ":1",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "meganav_image_heading_2",
+      "label": "Heading"
+    },
+    {
+      "type": "url",
+      "id": "meganav_image_link_2",
       "label": "Link"
     }
   ]
